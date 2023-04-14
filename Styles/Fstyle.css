@@ -1,0 +1,110 @@
+html {background: url(../image/back.png) ;}
+body{
+    margin-block-start: 133px;
+}
+form.myForm{
+    background-color: rgb(228, 238, 253);
+    box-sizing: content-box;
+    margin: 3%;
+}
+form.myForm1{
+    background-color:  #c5bfba3a;
+    box-sizing: content-box;
+    margin: 3%;
+}
+form.myForm ul li , form.myForm1 ul li{
+    width: 200px;
+    padding: 1%;
+    list-style: none;
+}
+form.myForm ul, form.myForm1 ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-between;
+    align-content: center;
+    padding: 40px;
+}
+form.myForm fieldset, form.myForm1 fieldset{
+    border:3px solid rgb(14, 54, 106);
+    font-weight: bold;
+    font-style: italic;
+}
+form.myForm legend, form.myForm1 legend{
+    color:rgb(45, 90, 142);
+    font-weight: bold;
+}
+form.myForm label,form.myForm1 label, div#DP p{
+    color: rgb(53, 52, 52);
+    font-weight: lighter;
+    font-style: italic;
+}
+form.myForm1 label{
+    color: rgb(53, 52, 52);
+    font-weight: lighter;
+    font-style: italic;
+}
+div#DP{
+    margin: 5em;
+    background-color: #c5bfba3a;
+    font-size: 18px;
+    padding: 15px;
+    font-style: normal;
+}
+.button{
+    height: 2em;
+    width: 10em;
+    background-color: rgb(122, 180, 255);
+    color: white;
+    border-radius: 50px 20px;
+    padding: 5px;
+    box-shadow: 1px 3px #888888;
+    font-size: 15px;
+}
+#name h2{
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px rgb(186, 213, 255);
+    font-size: 2em;
+}
+div#DP ul{
+    list-style-type: none;
+}
+div#DP li{
+   color: black;
+   font-weight: bold;
+   font-style:initial;
+}
+div .button{
+    float: right;
+}
+#img img{
+    width: 60%;
+    height: 70%;
+    padding-left: 90px;
+}
+.Delete{
+    height: 2em;
+    width: 8em;
+    background: none;
+    border: 2px solid #1659a0;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0px 0 5px 1px #b3aeae;
+    color: #01447e;
+    padding: 5px;
+    border-radius: 7px;
+    float: right;
+}
+#imgg img{
+    width: 100%;
+    height: 80%;
+    padding-left: 90px;
+    padding-right: 90px;
+}
+#ApplyDdit{
+    margin: 0 35%;
+}
+
+

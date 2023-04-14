@@ -1,0 +1,60 @@
+html {background: url(../image/back.png) ;}
+.main{margin-block-start: 133px;}
+
+.HS_table_1 th, .HS_table_1 td, 
+.HS_table_2 th, .HS_table_2 td {
+    border:3px solid rgb(14, 54, 106);
+    text-align: center;
+    background-color: rgb(228, 238, 253);
+    padding: 10px;
+    font-size: 18px;
+}
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+
+.logOut{
+    padding: 1%;
+    float:right;
+}
+
+.HS_body button {
+    background-color: rgb(122, 180, 255);
+    color: white;
+    border-radius: 50px 20px;
+    padding: 5px;
+    box-shadow: 1px 3px #888888;
+    font-size: 15px;
+}
+
+.HS_name{
+    display: inline;
+}
+
+.Caption_table{
+    text-shadow: 2px 2px rgb(186, 213, 255);
+}
+
+.Info{
+	text-align: center;
+	background-color: rgb(14, 54, 106);
+	color: #fff;
+    font-size: 15px;
+    font-weight: 50;
+    width: 100%;
+}
+
+.Info th{
+    padding: 13px;
+    text-shadow: 1px 1px #888888;
+}
+
+.SearchBy{
+    float: right;
+}
+
+.HS_body .copyright{margin-top: 15%;}

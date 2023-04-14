@@ -1,0 +1,65 @@
+html {background: url(../image/back.png) ;}
+body{margin-block-start: 133px;}
+.FirstHO_table th, .FirstHO_table td, 
+.SecondHO_table th, .SecondHO_table td {
+    border:3px solid rgb(14, 54, 106);
+    text-align: center;
+    background-color: rgb(228, 238, 253);
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  /*.FirstHO_table, .SecondHO_table{
+    margin-left:auto;
+	margin-right: auto;
+  }*/
+
+/*.Info th, .Info td{
+    background-color: rgb(14, 54, 106);
+    text-align: center;
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: 50;
+}*/
+
+/*.Info{
+    width: auto;
+}*/
+/*.logOut{
+    padding: 1%;
+    float:right;
+}*/
+.Add_button {
+    padding: 1%;
+    float: right;
+}
+
+.HO_body button {
+    background-color: rgb(122, 180, 255);
+    color: white;
+    border-radius: 50px 20px;
+    padding: 5px;
+    box-shadow: 1px 3px #888888;
+    font-size: 15px;
+}
+
+.HO_name{
+    display: inline;
+}
+
+.Caption_table{
+    text-shadow: 2px 2px rgb(186, 213, 255);
+}
+
+.Info{
+	text-align: center;
+	background-color: rgb(14, 54, 106);
+	color: #fff;
+    font-size: 15px;
+    font-weight: 50;
+}
+.Info th{
+    padding: 13px;
+    text-shadow: 1px 1px #888888;
+}
