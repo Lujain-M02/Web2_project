@@ -44,14 +44,14 @@
             <p>password:</p><input type="password"name="password" placeholder="your password" class="box"/>
 
                 <div class="btn" >
-                   <a href="login.html" ><input  type="button" value="SIGN UP"  /></a>
+                   <a href="login.php" ><input  type="button" value="SIGN UP"  /></a>
                 </div>       
 
             </form>
     </div>
     <div class="signup-image">
         <img src="image/99.png" alt="" >
-        <br>  <span>You have an Account already?</span><a href="login.html" >Log in now</a>
+        <br>  <span>You have an Account already?</span><a href="login.php" >Log in now</a>
     </div>
    </div>
    <!-- copyright -->

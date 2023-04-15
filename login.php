@@ -41,11 +41,11 @@
                      <option value="2">homeowner</option>
                      </select>
                 <div class="btn" >
-                 <a href="HomeOwner.html">   <input  type="button" value="LOG IN"  /></a>
+                 <a href="HomeOwner.php">   <input  type="button" value="LOG IN"  /></a>
                 </div>         
             </form>
             <br>
-            <span>You don't have an Account?</span><a href="signUp.html" >Sign Up now</a>
+            <span>You don't have an Account?</span><a href="signUp.php" >Sign Up now</a>
     </div>
     <div class="login-image">
         <img src="image/3.png" alt="" >

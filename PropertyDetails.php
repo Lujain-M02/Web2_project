@@ -21,7 +21,7 @@
           <ul class="navbar">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html">About Us</a></li>
-            <li><a href="login.html"><img class="logOut" src="image/logOut.png" alt="Log out" width="80" height="80"></a></li>
+            <li><a href="login.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="80" height="80"></a></li>
             
           </ul>
          
@@ -37,7 +37,7 @@
         <br>
         <div id="ApplyDdit">
             <button class="button">Apply</button>
-            <button class="button" onclick="window.location.href='EditProperty.html';">Edit</button>
+            <button class="button" onclick="window.location.href='EditProperty.php';">Edit</button>
         </div>
         <div id="DP">
             <ul>

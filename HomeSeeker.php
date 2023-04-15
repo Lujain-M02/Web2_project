@@ -26,7 +26,7 @@
       <ul class="navbar">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html">About Us</a></li>
-        <li><a href="login.html"><img class="logOut" src="image/logOut.png" alt="Log out" width="80" height="80"></a></li>
+        <li><a href="login.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="80" height="80"></a></li>
         
       </ul>
      
@@ -66,7 +66,7 @@
     </thead>
 
     <tr>
-        <td><a href="PropertyDetails.html">Olaya plaza</a></td>
+        <td><a href="PropertyDetails.php">Olaya plaza</a></td>
         <td>Apartmnt</td>
         <td>1000/month</td>
         <td>Under considration</td>
@@ -74,7 +74,7 @@
     </tr>
 
     <tr>
-        <td><a href="PropertyDetails.html">Al Nakheel home</a></td>
+        <td><a href="PropertyDetails.php">Al Nakheel home</a></td>
         <td>villa</td>
         <td>4000/month</td>
         <td>Accepted</td>
@@ -107,7 +107,7 @@
     </thead>
 
     <tr>
-        <td><a href="PropertyDetails.html">Sweet home</a></td>
+        <td><a href="PropertyDetails.php">Sweet home</a></td>
         <td>Apartmnt</td>
         <td>1500/month</td>
         <td>3</td>
@@ -116,7 +116,7 @@
     </tr>
 
     <tr>
-        <td><a href="PropertyDetails.html">Confy home</a></td>
+        <td><a href="PropertyDetails.php">Confy home</a></td>
         <td>villa</td>
         <td>5000/month</td>
         <td>6</td>

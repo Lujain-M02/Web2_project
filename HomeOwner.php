@@ -24,7 +24,7 @@
       <ul class="navbar">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html">About Us</a></li>
-        <li><a href="login.html"><img class="logOut" src="image/logOut.png" alt="Log out" width="100" height="80"></a></li>
+        <li><a href="login.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="100" height="80"></a></li>
         
       </ul>
      
@@ -59,27 +59,27 @@
         </tr>
 
         <tr>
-            <td rowspan="2"><a href="PropertyDetails.html">Olaya Plaza</a></td>
+            <td rowspan="2"><a href="PropertyDetails.php">Olaya Plaza</a></td>
             <td rowspan="2">Riyadh, olaya dist</td>
             <td ><a href="applicantInfo.php">Sara Ahmed</a></td>
             <td>Under consideration</td>
             <td><div class="Status_Button"> <button>Accept</button> <button>Decline</button></div></td>
         </tr>
         <tr>
-            <td><a href="applicantInfo.html">Ali Mohammed</a></td>
+            <td><a href="applicantInfo.php">Ali Mohammed</a></td>
             <td>Under consideration</td>
             <td><div class="Status_Button"> <button>Accept</button> <button>Decline</button></div></td> 
         </tr>
         <tr>
-            <td ><a href="PropertyDetails.html">Al Nakhel Home</a></td>
+            <td ><a href="PropertyDetails.php">Al Nakhel Home</a></td>
             <td >Riyadh, Al-Nakhel dist</td>
-            <td ><a href="applicantInfo.html">Sara Ahmed</a></td>
+            <td ><a href="applicantInfo.php">Sara Ahmed</a></td>
             <td>Accepted</td>
             <td></td>
         </tr>
     </table>
 
-    <div class="Add_button"><button><a href="AddNewProperty.html" >Add Proproty</a></button></div>
+    <div class="Add_button"><button><a href="AddNewProperty.php" >Add Proproty</a></button></div>
 
 <!-- ---------------------------------------second table -------------------------------------------------->
     <table class="SecondHO_table">
@@ -93,7 +93,7 @@
         </tr>
 
         <tr>
-            <td><a href="PropertyDetails.html">Home Plaza</a></td>
+            <td><a href="PropertyDetails.php">Home Plaza</a></td>
             <td >Apartment</td>
             <td >2500/month</td>
             <td>4</td>
@@ -101,7 +101,7 @@
             <td><div>  <button>Delete</button></div></td> 
         </tr>
         <tr>
-            <td><a href="PropertyDetails.html">Holiday Villa</a></td>
+            <td><a href="PropertyDetails.php">Holiday Villa</a></td>
             <td >Villa</td>
             <td>7000/month</td> 
             <td>6</td>
@@ -109,7 +109,7 @@
             <td><div>  <button>Delete</button></div></td> 
         </tr>
         <tr>
-            <td ><a href="PropertyDetails.html">Rawabi Square</a></td>
+            <td ><a href="PropertyDetails.php">Rawabi Square</a></td>
             <td >Apartment</td>
             <td >1000/month</td>
             <td>4</td>
