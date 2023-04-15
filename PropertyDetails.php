@@ -13,14 +13,14 @@
     <header>
         <div class="nav container">
           <!-- Logo -->
-          <a href="index.html" class="logo"> <img src="image/Logo.png" alt=""> Your Home</a>
+          <a href="index.php" class="logo"> <img src="image/Logo.png" alt=""> Your Home</a>
           <!-- Menu Icon -->
           <input type="checkbox" name="" id="menu">
           <label for="menu" <i class='bx bx-menu' id="menu-icon" ></i>></label>
           <!-- Nav List -->
           <ul class="navbar">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html">About Us</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">About Us</a></li>
             <li><a href="login.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="80" height="80"></a></li>
             
           </ul>
