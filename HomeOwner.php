@@ -61,7 +61,7 @@
         <tr>
             <td rowspan="2"><a href="PropertyDetails.html">Olaya Plaza</a></td>
             <td rowspan="2">Riyadh, olaya dist</td>
-            <td ><a href="applicantInfo.html">Sara Ahmed</a></td>
+            <td ><a href="applicantInfo.php">Sara Ahmed</a></td>
             <td>Under consideration</td>
             <td><div class="Status_Button"> <button>Accept</button> <button>Decline</button></div></td>
         </tr>
