@@ -134,7 +134,18 @@
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
   
+   <?php
+    $connection = mysqli_connect("localhost", "root", "root", "YourHome");
 
+    $error = mysqli_connect_error();
+        if($error != null){
+            echo '<p> Could not connect to the database </p>'; 
+        }
+        else
+        {
+          
+        }
+   ?>
 </body>
 
 </html>
