@@ -54,7 +54,7 @@
         <br>  <span>You have an Account already?</span><a href="login.php" >Log in now</a>
     </div>
    </div>
-   <!-- copyright -->
+   <!-- copyright ياارب -->
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
   </div> 
