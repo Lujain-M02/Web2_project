@@ -31,7 +31,7 @@
     <div class="login-container">
         <h1>LOG IN</h1>
         <p>GOOD to see you again!</p>
-        <form name ="login"  >
+        <form name ="login" method="POST" action="includes/login_inc.php"  >
             
                  <p>Enter your email address:</p><input type="email"name="email" placeholder="youremail@example.com" class="box" required/>
                  <p>Enter your password:</p><input type="password"name="password" placeholder="your password" class="box" required/>
