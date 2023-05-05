@@ -41,7 +41,7 @@
                      <option value="2">homeowner</option>
                      </select>
                 <div class="btn" >
-                 <a href="HomeOwner.php">   <input  type="button" value="LOG IN"  /></a>
+                 <input  type="submit" value="LOG IN"  />
                 </div>         
             </form>
             <br>
