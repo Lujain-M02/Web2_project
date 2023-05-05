@@ -1,5 +1,8 @@
 <?php
 //include 'includes/Security_inc.php';
+    //if ($_SESSION['role']!='home seeker'){
+    //        header("Location: HomeOwner.php");
+    //}
 ?>
 
 <!DOCTYPE html>

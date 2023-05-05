@@ -1,5 +1,5 @@
 <?php
-include 'includes/Security_inc.php';
+//include 'includes/Security_inc.php';
 ?>
 
 <!DOCTYPE html>
