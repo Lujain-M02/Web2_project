@@ -1,3 +1,7 @@
+<?php
+//include 'includes/Security_inc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
