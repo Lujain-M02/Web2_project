@@ -3,5 +3,5 @@
 	$databaseCon = mysqli_connect("localhost", "root", "root", "yourhome");
 	
 	if(!$databaseCon)
-		die (mysqli_connect_errno());
+		die ("connection failed: ". mysqli_connect_errno());
 ?>
