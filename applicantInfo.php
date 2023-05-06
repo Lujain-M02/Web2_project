@@ -1,7 +1,13 @@
 <?php
 //include 'includes/Security_inc.php';
 include 'includes/db_connect.php';
-$id=2;
+
+if(isset($_GET['id'])){
+$id=$_GET['id'];
+}else {
+    echo 'Error happened in the GET ';
+    exit();
+}
 
 $sql="SELECT * FROM `homeseeker` WHERE id='$id'";
 $result= mysqli_query($databaseCon, $sql);
@@ -11,7 +17,7 @@ if($rows > 0){
     $row=mysqli_fetch_assoc($result);
 }
 else{
-    echo 'Error happened ';
+    echo 'Error happened in searching information try again ';
     exit();
 }
                    
