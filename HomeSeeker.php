@@ -1,8 +1,20 @@
 <?php
-//include 'includes/Security_inc.php';
-    //if ($_SESSION['role']!='home seeker'){
-    //        header("Location: HomeOwner.php");
-    //}
+
+    /*$connection = mysqli_connect("localhost", "root", "root", "YourHome");
+
+    $error = mysqli_connect_error();
+        if($error != null){
+            echo '<p> Could not connect to the database </p>'; 
+        }
+        else
+        {
+          
+        }*/
+        
+        include 'includes/db_connect.php';
+
+        
+   
 ?>
 
 <!DOCTYPE html>
@@ -140,19 +152,7 @@
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
-  
-   <?php
-    $connection = mysqli_connect("localhost", "root", "root", "YourHome");
 
-    $error = mysqli_connect_error();
-        if($error != null){
-            echo '<p> Could not connect to the database </p>'; 
-        }
-        else
-        {
-          
-        }
-   ?>
 </body>
 
 </html>
