@@ -1,5 +1,5 @@
 <?php
-//include 'includes/Security_inc.php';
+include 'includes/Security_inc.php';
 include 'includes/db_connect.php';
 
 if(isset($_GET['id'])){
