@@ -13,8 +13,6 @@
         
         include 'includes/db_connect.php';
 
-        echo ' image/pro1.png';
-        echo 'image/pro1(1).png';
    
 ?>
 
