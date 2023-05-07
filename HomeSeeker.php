@@ -1,19 +1,16 @@
 <?php
 
-    /*$connection = mysqli_connect("localhost", "root", "root", "YourHome");
-
-    $error = mysqli_connect_error();
-        if($error != null){
-            echo '<p> Could not connect to the database </p>'; 
-        }
-        else
-        {
-          
-        }*/
-        
         include 'includes/db_connect.php';
-
-   
+        include 'includes/login_inc.php';
+       // session_start();
+        
+        $id = $_SESSION['id'];
+        $sql =  "SELECT * FROM homeseeker WHERE id = $id";
+         
+        $result = mysqli_query($connection, $sql);
+            
+        $row = mysqli_fetch_assoc($result);
+       
 ?>
 
 <!DOCTYPE html>
@@ -53,22 +50,21 @@
          
 
 <div class="main">
-<div class="HS_Welcome"> 
-  <!--<img class="logOut" src="image/logOut.png" alt="Log out" width="120" height="80">-->       
-  <h1>Welcome <div class="HS_name">Jaber</div></h1>
+<div class="HS_Welcome">      
+  <h1>Welcome <div class="HS_name"><?php echo $row['first_name']?></div></h1>
 
   <table class="Info">
           <tr>
               <th>First Name:</th>
-              <td>Jaber</td>
+              <td><?php echo $row['first_name']?></td>
               <th>Last Name:</th>
-              <td>Alshaya</td>
+              <td><?php echo $row['last_name']?></td>
               <th>Number Of Family Members:</th>
-              <td>5</td>
+              <td><?php echo $row['family_members']?></td>
               <th>Phone:</th>
-              <td>0501123354</td>
+              <td><?php echo $row['phone_number']?></td>
               <th>Email:</th>
-              <td>Jaber1@gmail.com</td>
+              <td><?php echo $row['email_address']?></td>
           </tr>
   </table> 
 </div> 
@@ -88,7 +84,6 @@
         <td>Apartmnt</td>
         <td>1000/month</td>
         <td>Under considration</td>
-        <td><div><button>whithdraw</button></div></td>
     </tr>
 
     <tr>
@@ -96,7 +91,6 @@
         <td>villa</td>
         <td>4000/month</td>
         <td>Accepted</td>
-        <td></td>
     </tr>
 </table>
 <!--------------------------------------------HS 2 table---------------------------------------------------> 

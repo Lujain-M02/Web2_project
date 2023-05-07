@@ -46,7 +46,7 @@
             </form>
             <br>
             <span>You don't have an Account?</span><a href="signUp.php" >Sign Up now</a>
-                    <?php
+                    <?php              
             if(isset($_GET['error']))
                 echo '<h3 style="color:red; text-align:center;">*Incorrect email or password</h3>';
         ?>
