@@ -5,11 +5,21 @@
        // session_start();
         
         $id = $_SESSION['id'];
+        
         $sql =  "SELECT * FROM homeseeker WHERE id = $id";
-         
-        $result = mysqli_query($connection, $sql);
-            
+        $result = mysqli_query($connection, $sql); 
         $row = mysqli_fetch_assoc($result);
+        
+                
+        $sql1 =  "SELECT  * FROM RentalApplication r,Property p WHERE p.id = r.property_id AND home_seeker_id = $id;";
+        $result1 = mysqli_query($connection, $sql1);  
+        $row1 = mysqli_fetch_assoc($result1);
+        
+        $sql2 =  "SELECT  * FROM RentalApplication r,Property p WHERE p.id != r.property_id AND home_seeker_id != $id;";
+        $result2 = mysqli_query($connection, $sql2);  
+        $row2 = mysqli_fetch_assoc($result2);
+
+
        
 ?>
 
@@ -79,19 +89,19 @@
         <th>Status</th>
     </thead>
 
-    <tr>
-        <td><a href="PropertyDetails.php">Olaya plaza</a></td>
-        <td>Apartmnt</td>
-        <td>1000/month</td>
-        <td>Under considration</td>
-    </tr>
+    
+        <?php 
+        while( $row1 = mysqli_fetch_assoc($result1))
+            {
+                echo '<tr>';
+                echo '<td><a href="PropertyDetails.php">'.$row1["name"].'</a></td>';
+                echo '<td>'.$row1["category"].'</td>';
+                echo '<td>'.$row1["rent_cost"].'</td>';
+                echo '<td>'.$row1["status"].'</td>';
+                echo '</tr>';
+            }
+        ?>
 
-    <tr>
-        <td><a href="PropertyDetails.php">Al Nakheel home</a></td>
-        <td>villa</td>
-        <td>4000/month</td>
-        <td>Accepted</td>
-    </tr>
 </table>
 <!--------------------------------------------HS 2 table---------------------------------------------------> 
 
@@ -118,23 +128,19 @@
         <th>Location</th>
     </thead>
 
-    <tr>
-        <td><a href="PropertyDetails.php">Sweet home</a></td>
-        <td>Apartmnt</td>
-        <td>1500/month</td>
-        <td>3</td>
-        <td>Riyadh, Al-yasamin Distict</td>
-        <td><div><button>Apply</button></div></td>
-    </tr>
-
-    <tr>
-        <td><a href="PropertyDetails.php">Confy home</a></td>
-        <td>villa</td>
-        <td>5000/month</td>
-        <td>6</td>
-        <td>Riyadh, Almalqa Distict</td>
-        <td><div><button>Apply</button></div></td>
-    </tr>
+        <?php 
+        while( $row2 = mysqli_fetch_assoc($result2))
+            {
+                echo '<tr>';
+                echo '<td><a href="PropertyDetails.php">'.$row2["name"].'</a></td>';
+                echo '<td>'.$row2["category"].'</td>';
+                echo '<td>'.$row2["rent_cost"].'</td>';
+                echo '<td>'.$row2["rooms"].'</td>';
+                echo '<td>'.$row2["location"].'</td>';
+                echo '<td><div><button>Apply</button></div></td>';
+                echo '</tr>';
+            }
+        ?>
 </table>
 </div>
 <br>
