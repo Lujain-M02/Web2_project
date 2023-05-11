@@ -31,7 +31,7 @@
       <ul class="navbar">
         <li><a href="index.php">Home</a></li>
         <li><a href="index.php">About Us</a></li>
-        <li><a href="login.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="100" height="80"></a></li>
+        <li><a href="signout.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="100" height="80"></a></li>
         
       </ul>
      
