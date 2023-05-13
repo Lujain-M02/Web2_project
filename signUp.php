@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h3>It's Free and take only a minute!</h3>
         <!-- show messages -->
         <div class="msg" style="text-align: center;margin:0px 3px">
-          
+            <?php if (isset($msg)) {echo $msg;} ?>
         </div>
         <form name ="signupF"  method="post" action="signUp.php">
             <p>first name:</p><input type="text" name="fname" placeholder=" first name" class="box" required/>
