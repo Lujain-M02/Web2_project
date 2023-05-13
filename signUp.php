@@ -1,9 +1,16 @@
 <?php
 
-
+try{
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-include 'includes/Security_inc.php';
-include 'includes/db_connect.php';
+ 
+
+  session_start();
+  
+	$databaseCon = mysqli_connect("localhost", "root", "root", "yourhome");
+	
+	if(!$databaseCon)
+		die ("connection failed: ". mysqli_connect_errno());
+        else{
 	if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['age']) && isset($_POST['telnumber'])&& isset($_POST['numOfF'])&& isset($_POST['income'])&& isset($_POST['job'])&& isset($_POST['email'])&& isset($_POST['password'])){
 		$fname = mysqli_real_escape_string($databaseCon, $_POST['fname']);
 		$lname = mysqli_real_escape_string($databaseCon, $_POST['lname']);
@@ -13,49 +20,59 @@ include 'includes/db_connect.php';
 		$income = mysqli_real_escape_string($databaseCon, $_POST['income']);
 		$job = mysqli_real_escape_string($databaseCon, $_POST['job']);
 		$email = mysqli_real_escape_string($databaseCon, $_POST['email']);
-                $password= mysqli_real_escape_string($databaseCon, $_POST['password']);
+    $password= mysqli_real_escape_string($databaseCon, $_POST['password']);
                 
-                
-		$sql="SELECT * FROM `$TABLE_NAME` WHERE email_address='$email'";
+		$sql="SELECT * FROM `homeseeker` WHERE email_address='$email'";
 		$result = mysqli_query($databaseCon, $sql);
-                
 		
 		while($rows = mysqli_fetch_array($result)){
-			if( $email == $rows['email']){
-				$msg = '<h4 style="color:red;">This email entered exists</h4>';
-				break; 
-			}
-        }}
-		if (empty($msg)) {
-			$query = "INSERT INTO `student` (username, password, email, name) VALUES('$username', '".md5($password)."', '$email', '$fullname');";
-			$result = mysqli_query($databaseCon, $query) or die(mysqli_error($databaseCon));
-			
-			if ($result) {
-				$query = "SELECT * FROM `student` WHERE username='$username' and password='".md5($password)."'";
-				$result = mysqli_query($databaseCon, $query) or die(mysqli_error($databaseCon));
-				$rows = mysqli_num_rows($result);
-				
-				if ($rows == 1){
-					$row = mysqli_fetch_assoc($result);
-					$id = $row['id'];
-					$username = $row['username'];
-					$_SESSION['id'] = $id;
-					$_SESSION['username'] = $username;
-					$_SESSION['role']="student";
-					header("Location: student.php");
-				}
-				else{
-					$msg = '<h4 style="color:red;">Error in signup.</h4>';
-				}
-			} else {
-				$msg = '<h4 style="color:red;">Error in signup.</h4>';
-			}
-		}
-	}
-	else{
+      if( $email == $rows['email_address']){
+        $msg = '<h4 style="color:red;">This email entered exists</h4>';
+        break; 
+      }
+    }
+  }
+  if (empty($msg)) {
+      $idnum="SELECT * FROM homeseeker;";
+      $idff=mysqli_query($databaseCon, $idnum);
+      $num=mysqli_num_rows($idff)+1;
+      
+
+
+                $query = "INSERT INTO `homeseeker` (id,first_name,last_name,age,family_members,income,job,phone_number,email_address,password)"
+                            . " VALUES('$num','$fname', '$lname', '$age', '$numOfF', '$income', '$job', '$telnumber', '$email', '".password_hash($password,PASSWORD_DEFAULT)."');";
+                       
+  $result = mysqli_query($databaseCon, $query) or die(mysqli_error($databaseCon));
+
+  if ($result) {
+    $sql = "SELECT * FROM `homeseeker` WHERE email_address='$email' and password='".password_hash($password,PASSWORD_DEFAULT)."'";
+    $result = mysqli_query($databaseCon, $sql) or die(mysqli_error($databaseCon));
+    $rows = mysqli_num_rows($result);
+    
+    if ($rows > 1){
+      $row = mysqli_fetch_assoc($result);
+     if(password_verify($password, $row['password'])){
+        $id=$row['id'];
+        $_SESSION['id']=$id;                        
+        $_SESSION['role']="home seeker";
+        header("Location: ../HomeSeeker.php");
+                        }
+    }
+    else{
+      $msg = '<h4 style="color:red;">Error in signup.</h4>';
+    }
+  } else {
+    $msg = '<h4 style="color:red;">Error in signup.</h4>';
+  }
+  }
+
+        }}else{
 		$msg = '<h4 style="color:red;">required data is missing!</h4>';
 	}
 
+}catch(Exception $e){
+  $msg = '<h4 style="color:red;">Error in signup.</h4>';
+}
 
 ?>
 
@@ -93,20 +110,24 @@ include 'includes/db_connect.php';
     <div class="signup-container">
         <h1>SIGN UP</h1>
         <h3>It's Free and take only a minute!</h3>
-        <form name ="signupF"  method="post" action="signup.php">
-            <p>first name:</p><input type="text" name="fname" placeholder=" first name" class="box"/>
-            <p>last name:</p><input type="text" name="lname" placeholder=" last name" class="box"/>
-            <p>age:</p><input type="text" name="age"placeholder=" age" class="box"/>
+        <!-- show messages -->
+        <div class="msg" style="text-align: center;margin:0px 3px">
+          
+        </div>
+        <form name ="signupF"  method="post" action="signUp.php">
+            <p>first name:</p><input type="text" name="fname" placeholder=" first name" class="box" required/>
+            <p>last name:</p><input type="text" name="lname" placeholder=" last name" class="box" required />
+            <p>age:</p><input type="number" name="age"placeholder=" age" class="box" required />
             <p>phone number:</p>
-            <input type="tel" name="telnumber" placeholder="phone number" class="box" > 
-            <p>number of the family members:</p><input type="text" name="numOfF" class="box"/>
-            <p>income:</p><input type="text"name="income" placeholder="income" class="box"/>
-            <p>job:</p><input type="text"name="job" placeholder="job" class="box"/>
-            <p>email address:</p><input type="email"name="email" placeholder="youremail@example.com" class="box"/>
-            <p>password:</p><input type="password"name="password" placeholder="your password" class="box"/>
+            <input type="number" name="telnumber" placeholder="phone number:50*******" class="box" required > 
+            <p>number of the family members:</p><input type="number" name="numOfF" class="box" required />
+            <p>income:</p><input type="number"name="income" placeholder="income" class="box" required />
+            <p>job:</p><input type="text"name="job" placeholder="job" class="box"  required />
+            <p>email address:</p><input type="email"name="email" placeholder="youremail@example.com" class="box" required />
+            <p>password:</p><input type="password"name="password" placeholder="your password" class="box" required />
 
                 <div class="btn" >
-                   <a href="login.php" ><input  type="button" value="SIGN UP"  /></a>
+                  <input  type="submit" value="SIGN UP"  /></a>
                 </div>       
 
             </form>
