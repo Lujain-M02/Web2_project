@@ -45,17 +45,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $result = mysqli_query($databaseCon, $query) or die(mysqli_error($databaseCon));
 
   if ($result) {
-    $sql = "SELECT * FROM `homeseeker` WHERE email_address='$email' and password='".password_hash($password,PASSWORD_DEFAULT)."'";
+    $sql = "SELECT * FROM `homeseeker` WHERE email_address='$email' ";
+            //. "//and password='".password_hash($password,PASSWORD_DEFAULT)."'";
     $result = mysqli_query($databaseCon, $sql) or die(mysqli_error($databaseCon));
     $rows = mysqli_num_rows($result);
     
-    if ($rows > 1){
+    if ($rows == 1){
       $row = mysqli_fetch_assoc($result);
-     if(password_verify($password, $row['password'])){
+     if(password_verify($_POST['password'], $row['password'])){
         $id=$row['id'];
         $_SESSION['id']=$id;                        
-        $_SESSION['role']="home seeker";
-        header("Location: ../HomeSeeker.php");
+        //$_SESSION['role']="home seeker";
+        header("Location: HomeSeeker.php");
                         }
     }
     else{
