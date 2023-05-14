@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      if(password_verify($_POST['password'], $row['password'])){
         $id=$row['id'];
         $_SESSION['id']=$id;                        
-        //$_SESSION['role']="home seeker";
+        $_SESSION['role']="home seeker";
         header("Location: HomeSeeker.php");
                         }
     }
@@ -67,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
   }
 
-        }}else{
-		$msg = '<h4 style="color:red;">required data is missing!</h4>';
-	}
+        }}
 
 }catch(Exception $e){
   $msg = '<h4 style="color:red;">Error in signup.</h4>';
