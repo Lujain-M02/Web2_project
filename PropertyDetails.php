@@ -1,5 +1,19 @@
 <?php
-//include 'includes/Security_inc.php';
+include 'includes/Security_inc.php';
+
+session_start();
+
+include 'db_connect.php';
+
+
+$id = $_GET['id'];
+//اول شي بجيب المعلومات بايدي اللي دخل 
+
+$sql = "SELECT * FROM property WHERE id = $id";
+$result = mysqli_query($databaseCon, $sql);
+$row = mysqli_fetch_assoc($result);
+
+
 ?>
 
 <!DOCTYPE html>
