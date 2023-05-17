@@ -20,15 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$income = mysqli_real_escape_string($databaseCon, $_POST['income']);
 		$job = mysqli_real_escape_string($databaseCon, $_POST['job']);
 		$email = mysqli_real_escape_string($databaseCon, $_POST['email']);
-    $password= mysqli_real_escape_string($databaseCon, $_POST['password']);
+                $password= mysqli_real_escape_string($databaseCon, $_POST['password']);
                 
 		$sql="SELECT * FROM `homeseeker` WHERE email_address='$email'";
 		$result = mysqli_query($databaseCon, $sql);
 		
 		while($rows = mysqli_fetch_array($result)){
-      if( $email == $rows['email_address']){
-        $msg = '<h4 style="color:red;">This email entered exists</h4>';
-        break; 
+                   if( $email == $rows['email_address']){
+                     $msg = '<h4 style="color:red;">This email entered exists</h4>';
+                        break; 
       }
     }
   }
