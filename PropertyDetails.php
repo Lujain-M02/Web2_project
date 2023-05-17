@@ -1,19 +1,30 @@
 <?php
-include 'includes/Security_inc.php';
+  session_start();
+    if (!isset($_SESSION['id'])){
+            header("Location: index.php");
+            exit();
+    }
+    
+   $databaseCon = mysqli_connect("localhost", "root", "root", "yourhome");
+	if(!$databaseCon)
+		die ("connection failed: ". mysqli_connect_errno());
+        else{
 
-session_start();
-
-include 'db_connect.php';
-
-
-$id = $_GET['id'];
-//اول شي بجيب المعلومات بايدي اللي دخل 
+ $id = $_GET['id'];
+//اول شي بجيب المعلومات بايدي اللي دخل-property- 
 
 $sql = "SELECT * FROM property WHERE id = $id";
 $result = mysqli_query($databaseCon, $sql);
-$row = mysqli_fetch_assoc($result);
+$row1 = mysqli_fetch_assoc($result);
+if(!$row1){
+    echo 'error';}
+//اجيب النوع حقهم عشان اعرضه
+    $sql = "SELECT * FROM propertycategory WHERE id = {$row1['property_category_id']}";
+    $result = mysqli_query($databaseCon, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $category = $row['category'];
 
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,23 +70,23 @@ $row = mysqli_fetch_assoc($result);
         </div>
         <div id="DP">
             <ul>
-            <li class="a">Category: <p>Apartment</p></li>
+            <li class="a">Category: <p><?php echo $category; ?></p></li>
             
 
-            <li class="a">Number of Rooms: <p> 6 Rooms</p></li> 
+            <li class="a">Number of Rooms: <p><?php echo $row1['rooms']; ?> Rooms</p></li> 
 
-            <li class="a">Rent: <p>5000/month</p></li> 
+            <li class="a">Rent: <p><?php echo $row1['rent_cost']; ?></p></li> 
 
-            <li class="a">Location: <p>Riyadh, Almalqa District</p></li>  
+            <li class="a">Location: <p><?php echo $row1['location']; ?></p></li>  
 
-            <li class="a">Max number of tenants: <p>5</p></li>
+            <li class="a">Max number of tenants: <p><?php echo $row1['max_tenants'];?></p></li>
 
-            <li class="a">Descrtption:  <p>The apartment is distinguished by its legendary views of the main street,it consists of a master room, 2 bedroom, 3 bathrooms, and 3 livng rooms.</p></li>
+            <li class="a">Descrtption:  <p><?php echo $row1['description']; ?></p></li>
         </ul>
         </div>
-        <div id="imgg">
+        <!-- <div id="imgg"> 
             <img src="image/fet1.png">
-        </div>
+        </div>-->
         <br>
            
 
