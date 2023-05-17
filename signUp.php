@@ -1,6 +1,6 @@
 <?php
 
-try{
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  
 
@@ -69,9 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }}
 
-}catch(Exception $e){
-  $msg = '<h4 style="color:red;">Error in signup.</h4>';
-}
+
 
 ?>
 
