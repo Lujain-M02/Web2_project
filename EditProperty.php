@@ -1,8 +1,36 @@
-<?php
-//include 'includes/Security_inc.php';
-?>
-
 <!DOCTYPE html>
+<?php
+include 'includes/Security_inc.php';
+include 'includes/db_connect.php';
+
+if(isset($_GET['id'])){
+$Pid=$_GET['id'];
+}else {
+    echo 'Error happened in the get';
+    exit();
+}
+
+$sql="SELECT * FROM `property` WHERE id='$Pid'";
+$result= mysqli_query($databaseCon, $sql);
+$rows= mysqli_num_rows($result);
+
+if($rows > 0){
+    $row=mysqli_fetch_assoc($result);
+}
+else{
+    echo 'Error happened ';
+    exit();
+}
+#error messages 
+if(isset($_GET['delete'])){
+    echo '<script>alert("The image has been deleted");</script>';
+}
+
+if(isset($_GET['error'])){
+    echo '<script>alert("please fill all the information");</script>';
+}
+
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,52 +64,78 @@
       <main>
 
         <div id="name">
-            <h2>Sweet Home</h2>
+            <h2><?php echo $row['name'];?></h2>
         </div>
 
         <br>
         <div id="PI">
-          <form class="myForm1" method="post" enctype="multipart/form-data">
+          <form class="myForm1" enctype="multipart/form-data" method="POST" action="includes/edit_inc.php?Pid=<?php echo $Pid;?>">
             <fieldset>
                 <legend>Property Information</legend>
                 <ul>
                     <li>
                         <label>Property Name:
-                        <input type="text" id="pname" value="Sweet home"></label>
+                        <input type="text" name="Pname" id="pname" value="<?php echo $row['name'];?>"></label>
                     </li>
-                    <li>
+                    <!--<li>
                         <label>Category:</label>
-                        <select id="Category">
-                            <option>Apartment</option>
-                            <option>villa</option>
+                        <select id="Category" name="Pcate">
+                            <option value="1111">Apartment</option>
+                            <option value="22222">villa</option>
+                            <option value="33333">Delux</option>
                         </select>
-                    </li>
+                    </li>-->
                     <li>
                         <label>Number of Rooms:
-                        <input type="text" id="NOR" value="6 Rooms"></label>
+                        <input type="text" name="room" id="NOR" value="<?php echo $row['rooms'];?>"></label>
                     </li>
                     <li>
                         <label>Rent:
-                        <input type="text" id="rent" value="5000/month"></label>
+                        <input type="text" name="price" id="rent" value="<?php echo $row['rent_cost'];?>"></label>
                     </li>
                     <li>
                         <label>Location:
-                        <input type="text" id="location" value="Riyadh, Almalqa District"></label>
+                        <input type="text" name="Location" id="location" value="<?php echo $row['location'];?>"></label>
                     </li>
                     <li>
-                        <label>Max number of tenants:
-                        <input type="text" id="MT" value="5"></label>
+                        <label>number of tenants:
+                        <input type="text" id="MT" name="tenants" value="<?php echo $row['max_tenants'];?>"></label>
                     </li>
                     <li>
                         <label>Description:<br>
-                        <textarea id="Des" rows="6" cols="30">The apartment is distinguished by its legendary views of the main street,it consists of a master room, 2 bedroom, 3 bathrooms, 2 living rooms, and a kitchen.</textarea></label>
+                        <textarea id="Des" name="Pdes" rows="6" cols="30" ><?php echo $row['description'];?></textarea></label>
+                    </li>
+                    <li>
+                        <label>Upload Image:
+                            <input type="file" name="images[]" accept="image/*" multiple></label>
                     </li>
                 </ul>
+                <input type="submit" value="save" class="button" style="margin: 1%"/>
             </fieldset>
         </form>
         </div>
         <br>
+        <?php
+            // Retrieve images from the database
+            $retrieve_query = "SELECT * FROM `propertyimage` WHERE property_id='$Pid'";
+            $result= mysqli_query($databaseCon, $retrieve_query);
+            //$rows= mysqli_num_rows($result);
 
+            if ($result->num_rows > 0) {
+                // Display the retrieved images
+                echo '<div id="img">';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<button id ="'.$row["id"].'" class="Delete"><a href="includes/edit_inc.php?imgID='.$row["id"].'&Pid='.$Pid.'"> Delete</a></button>';
+                    echo '<img src="upload/' . $row["path"] . '" alt="Image" value="'.$row["id"].'">';
+                    echo '<br><br>';
+                }
+                echo '</div>';
+            } else {
+                echo '<p><center style="margin: 20px;">this property does not have images </center></p>';
+            }
+            ?>
+
+        <!-- comment 
         <div id="img">
           <button class="button">Upload images</button>
           <br><br><br><br>
@@ -101,7 +155,7 @@
       <button  class="button" onclick="window.location.href='PropertyDetails.php';">Save</button>
      </div>
      <br>
-     <br>
+     <br>--> 
   
    <!-- copyright -->
    <div class="copyright">
