@@ -19,8 +19,11 @@ $sql = "SELECT * FROM property WHERE id = $id";
 $result = mysqli_query($databaseCon, $sql);
 $row1 = mysqli_fetch_assoc($result);
 if(!$row1){
-    echo 'error';}
-
+    echo 'error in retreving row';}
+    
+$sql = "SELECT * FROM propertycategory WHERE id = {$row1['property_category_id']}";
+$result = mysqli_query($databaseCon, $sql);
+$category = mysqli_fetch_assoc($result);
 
 }
 ?>
@@ -68,17 +71,17 @@ if(!$row1){
         </div>
         <div id="DP">
             <ul>
-            <li class="a">Category: <p><?php #echo $category; ?>ا</p></li>
+            <li class="a">Category: <p><?php echo $category['category']; ?></p></li>
             
-            <li class="a">Number of Rooms: <p><?php # echo $row1['rooms']; ?> Rooms</p></li> 
+            <li class="a">Number of Rooms: <p><?php echo $row1['rooms']; ?> Rooms</p></li> 
 
-            <li class="a">Rent: <p><?php #echo $row1['rent_cost']; ?></p></li> 
+            <li class="a">Rent: <p><?php echo $row1['rent_cost']; ?></p></li> 
 
-            <li class="a">Location: <p><?php #echo $row1['location']; ?>5</p></li>  
+            <li class="a">Location: <p><?php echo $row1['location']; ?></p></li>  
 
-            <li class="a">Max number of tenants: <p><?php# echo $row1['max_tenants'];?></p></li>
+            <li class="a">Max number of tenants: <p><?php echo $row1['max_tenants'];?></p></li>
 
-            <li class="a">Descrtption:  <p><?php #echo $row1['description']; ?></p></li>
+            <li class="a">Descrtption:  <p><?php echo $row1['description']; ?></p></li>
         </ul>
         </div>
         <!-- <div id="imgg"> 
