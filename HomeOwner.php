@@ -17,16 +17,16 @@
            
         $sql1 =  "SELECT p.name,p.location,hs.first_name,hs.last_name,a.status,hs.id AS HSid ,p.id AS PRid
 FROM homeseeker hs,property p,rentalapplication r,applicationstatus a
-WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status_id = a.id";
+WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status_id = a.id AND p.homeowner_id = $id";
         $result1 = mysqli_query($databaseCon, $sql1);  
         
-        $sql2 =  "SELECT  p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.home_seeker_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
+        $sql2 =  "SELECT  p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.homeowner_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
         $result2 = mysqli_query($databaseCon, $sql2);  
 
-        $sql3 =  "SELECT pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.home_seeker_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
+        $sql3 =  "SELECT pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.homeowner_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
         $result3 = mysqli_query($databaseCon, $sql3); 
         
-        $sql4 =  "SELECT pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.home_seeker_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
+        $sql4 =  "SELECT pc.category FROM Property p, propertycategory pc, rentalapplication r WHERE r.homeowner_id !=$id AND p.id = r.property_id AND p.property_category_id = pc.id";
         $result4 = mysqli_query($databaseCon, $sql4);
 
 
@@ -111,6 +111,7 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
                 //echo "<td>".$row1['first_name']." ".$row1['last_name']."</td>";
                 echo "<td>".$row1['status']."</td>";
                 echo '<td><div><button name="Accept">Accept</button><button name="Decline">Decline</button></div></td>';
+                
                 echo "</tr>";
             }
         ?>
