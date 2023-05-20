@@ -156,7 +156,9 @@ if(isset($_GET['error'])){
      </div>
      <br>
      <br>--> 
-  
+  <?php
+  mysqli_close($connection); 
+  ?>
    <!-- copyright -->
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
