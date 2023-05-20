@@ -22,7 +22,7 @@ table{
     float:right;
 }
 
-.HS_body button {
+.HS_body .apply {
     background-color: rgb(122, 180, 255);
     color: white;
     border-radius: 50px 20px;
@@ -58,3 +58,12 @@ table{
 }
 
 .HS_body .copyright{margin-top: 15%;}
+
+form.submit{
+    background-color: rgb(122, 180, 255);
+    color: white;
+    border-radius: 50px 20px;
+    padding: 5px;
+    box-shadow: 1px 3px #888888;
+    font-size: 15px;
+}
