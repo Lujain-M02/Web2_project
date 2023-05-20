@@ -105,7 +105,7 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
               echo ' <li class="a"> contact owner:<p>' .$owner['name'].' , 0' .$owner['phone_number'].' , ' .$owner['email_address'].' </p></li>';
               } ?>
              <br>
-        <div id="ApplyDdit">
+        <div id="ApplyDdit" >
             <!--اعرض البتن حسب اليوزر-->
             <?php 
            
