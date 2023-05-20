@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'includes/db_connect.php';
-/*include 'includes/Security_inc.php';
+include 'includes/Security_inc.php';
 
 
 if(isset($_GET['id'])){
@@ -9,8 +9,7 @@ $Pid=$_GET['id'];
 }else {
     echo 'Error happened in the get';
     exit();
-}*/
-$Pid=2;
+}
 $sql="SELECT * FROM `property` WHERE id='$Pid'";
 $result= mysqli_query($databaseCon, $sql);
 $rows= mysqli_num_rows($result);
