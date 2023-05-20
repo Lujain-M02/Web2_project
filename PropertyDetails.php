@@ -3,7 +3,9 @@
     if (!isset($_SESSION['id'])){
             header("Location: index.php");
             exit();
-    }
+    } else {
+        $userid=$_SESSION['id'];
+}
     
    $databaseCon = mysqli_connect("localhost", "root", "root", "yourhome");
 	if(!$databaseCon)
@@ -20,10 +22,28 @@ $result = mysqli_query($databaseCon, $sql);
 $row1 = mysqli_fetch_assoc($result);
 if(!$row1){
     echo 'error in retreving row';}
-    
+    //النوع
 $sql = "SELECT * FROM propertycategory WHERE id = {$row1['property_category_id']}";
 $result = mysqli_query($databaseCon, $sql);
 $category = mysqli_fetch_assoc($result);
+
+
+//صور
+$sql = "SELECT * FROM propertyimage WHERE property_id = $id";
+$result = mysqli_query($databaseCon, $sql);
+$images = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+//استرجع بيانات الاونر عشان اعرضها في حال كان سيكر وبرضو اعرف هو سيكر ولا اونر
+$sql = "SELECT * FROM homeowner WHERE id = {$row1['homeowner_id']}";
+$result = mysqli_query($databaseCon, $sql);
+$owner = mysqli_fetch_assoc($result);
+
+if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
+    $isOwner = true;
+}else{
+    $isOwner = false;
+}
+        
 
 }
 ?>
@@ -66,8 +86,23 @@ $category = mysqli_fetch_assoc($result);
         </div>
         <br>
         <div id="ApplyDdit">
-            <button class="button">Apply</button>
-            <button class="button" onclick="window.location.href='EditProperty.php';">Edit</button>
+            <!--اعرض البتن حسب اليوزر-->
+            <?php 
+           
+                if($isOwner){
+                    echo "<a  href='EditProperty.php?id=".$row1['id']."'><button class='button'>Edit</button></a>";
+                }else{
+                    $sql = "SELECT * FROM `rentalapplication` WHERE property_id = $id AND home_seeker_id = $userid";
+                    $result = mysqli_query($databaseCon, $sql);
+                    
+                    
+                ////مهم اسوي اشيك هل هو سوا ابلاي من قبل او لا
+                   if(!$row = mysqli_fetch_assoc($result)){//if he didnt apply it do apply page
+                    echo "<a  href='includes/apply.php?id=".$row1['id']."'><button class='button'>Apply</button></a>";   
+                   }
+                    //الانكلود على حسب اذا بتحطين ملف الابلاي فيه ولا لا
+                }
+            ?>
         </div>
         <div id="DP">
             <ul>
@@ -82,11 +117,20 @@ $category = mysqli_fetch_assoc($result);
             <li class="a">Max number of tenants: <p><?php echo $row1['max_tenants'];?></p></li>
 
             <li class="a">Descrtption:  <p><?php echo $row1['description']; ?></p></li>
+            <?php 
+           if(!$isOwner){
+             // اعرض معلومات الاونر للسيكر فقط
+             
+              echo ' <li class="a"> contact owner:<p>' .$owner['name'].' , 0' .$owner['phone_number'].' , ' .$owner['email_address'].' </p></li';
+              } ?>
+            
         </ul>
         </div>
-        <!-- <div id="imgg"> 
-            <img src="image/fet1.png">
-        </div>-->
+         <?php foreach($images as $image){ ?>
+            <div id="imgg">
+                <img src="upload/<?php echo $image['path']; ?>" />
+            </div>
+        <?php } ?>
         <br>
            
 
