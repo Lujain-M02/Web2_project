@@ -14,7 +14,7 @@
             header("Location: index.php");
             exit();
     } else {
-        $userid=$_SESSION['id'];
+        $id=$_SESSION['id'];
     }
         
        
