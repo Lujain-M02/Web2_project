@@ -77,7 +77,7 @@ div#DP li{
    font-style:initial;
 }
 div .button{
-    float: right;
+   float: right;   
 }
 #img img{
     width: 60%;
@@ -104,7 +104,7 @@ div .button{
     padding-right: 90px;
 }
 #ApplyDdit{
-    margin: 0 35%;
+margin: 12 35%;   
 }
 
 
