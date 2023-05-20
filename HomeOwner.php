@@ -4,6 +4,7 @@
     //        header("Location: HomeSeeker.php");
     //}
 
+
         include 'includes/db_connect.php';
         include 'includes/login_inc.php';
        session_start();
@@ -15,7 +16,7 @@
           $row = mysqli_fetch_assoc($result);
         
            
-        $sql1 =  "SELECT p.name,p.location,hs.first_name,hs.last_name,a.status,hs.id AS HSid ,p.id AS PRid
+        $sql1 =  "SELECT p.name,p.location,hs.first_name,hs.last_name,a.status,hs.id AS HSid ,p.id ,r.id AS rid
 FROM homeseeker hs,property p,rentalapplication r,applicationstatus a
 WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status_id = a.id AND p.homeowner_id = $id";
         $result1 = mysqli_query($databaseCon, $sql1);  
@@ -97,11 +98,13 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
         <?php 
         while($row1 = mysqli_fetch_assoc($result1))
             {
-            /*foreach ($row1 as $a=>$b){
+            foreach ($row1 as $a=>$b){
                 echo $a.":".$b."<br>";
-            }*/
-            $propertyId = $row1['PRid'];
+            }
+            $propertyId = $row1['id'];
             $applicantInfo= $row1['HSid']; //الاي دي لازم أغيره
+            $rentalappID = $row1['rid'];
+            echo '$row1["rid"]'.$row1['rid'];
                 echo "<tr>";
                 echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row1['name']."</a></td>";
                 echo "<td>".$row1['location']."</td>";
@@ -110,13 +113,19 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
                 echo "<td><a href='applicantInfo.php?id=$applicantInfo'>".$row1['first_name']." ".$row1['last_name']."</a></td>";
                 //echo "<td>".$row1['first_name']." ".$row1['last_name']."</td>";
                 echo "<td>".$row1['status']."</td>";
+                
+                echo "<form method='GET' action='updateStatus.php?id=$rentalappID'><td><a href='updateStatus.php?id=$rentalappID'>Accept</a>"
+                        . "<a href='applicantInfo.php?id=$rentalappID'>Decline</a></td></form>";
                 echo '<td><div><button name="Accept">Accept</button><button name="Decline">Decline</button></div></td>';
                 
-                echo "</tr>";
+  
             }
+            
+        
+   
         ?>
     </table>
-
+<button name="Accept">Accept</button>
     <div class="Add_button"><button><a href="AddNewProperty.php" >Add Proproty</a></button></div>
 
 <!-- ---------------------------------------second table -------------------------------------------------->
@@ -131,7 +140,7 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
         </tr>
         
          <?php 
-        while($row2 = mysqli_fetch_assoc($result2))
+         while($row2 = mysqli_fetch_assoc($result2))
             {
                 echo '<tr>';
                 echo '<td><a href="PropertyDetails.php">'.$row2["name"].'</a></td>';
@@ -139,7 +148,7 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
                 echo '<td>'.$row2["rent_cost"].'</td>';
                 echo '<td>'.$row2["rooms"].'</td>';
                 echo '<td>'.$row2["location"].'</td>';
-                echo '<td><div><button>Delete</button></div></td>';
+                echo '<td><div><button>Apply</button></div></td>';
                 echo '</tr>';
             }
             
@@ -155,7 +164,7 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
                        echo '<td>'.$row4["rent_cost"].'</td>';
                        echo '<td>'.$row4["rooms"].'</td>';
                        echo '<td>'.$row4["location"].'</td>';
-                       echo '<td><div><button>Delete</button></div></td>';
+                       echo '<td><div><form action="Delete.php" method="GET"><button name = >DELETE</button></form></div></td>';
                        echo '</tr>'; 
          }}
         }}

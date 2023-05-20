@@ -1,5 +1,34 @@
 <?php
 //include 'includes/Security_inc.php';
+include 'includes/Security_inc.php';
+include 'includes/db_connect.php';
+
+if(isset($_GET['id'])){
+$Pid=$_GET['id'];
+}else {
+    echo 'Error happened in the get';
+    exit();
+}
+
+include 'includes/db_connect.php';
+include 'includes/login_inc.php';
+session_start();
+
+if(isset($_POST["Submit"])){
+    $Property_Name = $_POST["PrName"];
+//catogry
+$Number_of_Rooms= $_POST["numOfRooms"];
+$Rent = $_POST["rent"];
+$Location = $_POST["location"];
+$Max_number_of_tenants = $_POST["numOfTen"];
+$Description = $_POST["desc"];
+$Upload_Pictures = $_POST["pic"];/////لازم أرجع أتأكد منها
+    
+    
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +72,7 @@
                 <ul>
                     <li>
                         <label>Property Name:
-                        <input type="text" id="pname"></label>
+                        <input type="text" name="PrName"id="pname"></label>
                     </li>
                     <li>
                         <label>Category:</label>
@@ -54,31 +83,31 @@
                     </li>
                     <li>
                         <label>Number of Rooms:
-                        <input type="text" id="NOR"></label>
+                        <input type="text" name="numOfRooms"id="NOR"></label>
                     </li>
                     <li>
                         <label>Rent:
-                        <input type="text" id="rent"></label>
+                        <input type="text" name="rent" id="rent"></label>
                     </li>
                     <li>
                         <label>Location:
-                        <input type="text" id="location"></label>
+                        <input type="text" name="location" id="location"></label>
                     </li>
                     <li>
                         <label>Max number of tenants:
-                        <input type="text" id="MT"></label>
+                        <input type="text" name="numOfTen" id="MT"></label>
                     </li>
                     <li>
                         <label>Description:<br>
-                        <textarea id="Des" rows="6" cols="30"></textarea></label>
+                        <textarea name="desc" id="Des" rows="6" cols="30"></textarea></label>
                     </li>
                     <li>
                         <label>Upload Pictures:
-                        <input type="file" id="myFile" accept="image/png, image/jpeg"></label>
+                        <input type="file" name="pic" id="myFile" accept="image/png, image/jpeg"></label>
                     </li>
                 </ul>
-                <button class="button">Submit</button>
-                <button  class="button">Reset</button>
+                <button name = "Submit" class="button">Submit</button>
+                <button  name = "Reset" class="button">Reset</button>
             </fieldset>
         </form>
      </main>
