@@ -41,6 +41,7 @@
         $Location = $_POST['Location'];
         $tenants = $_POST['tenants'];
         $Pdes = $_POST['Pdes'];
+        $Pcata=$_POST['Pcate'];
         
 
         
@@ -58,7 +59,8 @@
                     rent_cost = '$price',
                     location = '$Location',
                     max_tenants = '$tenants',
-                    description = '$Pdes'
+                    description = '$Pdes',
+                    property_category_id='$Pcata'
                   WHERE id = '$id'";
 
         
