@@ -15,9 +15,6 @@
         
         $sql2 =  "SELECT p.id, p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result2 = mysqli_query($databaseCon, $sql2);  
-     
-        $sql3 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
-        $result3 = mysqli_query($databaseCon, $sql3);
         
         $sql4 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result4 = mysqli_query($databaseCon, $sql4);
@@ -162,6 +159,8 @@
           <label>Search By: </label>
           <select name="Search">
             <?php
+             $sql3 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
+        $result3 = mysqli_query($databaseCon, $sql3);
              $category = null;
              while($row3 = mysqli_fetch_assoc($result3))
              {
