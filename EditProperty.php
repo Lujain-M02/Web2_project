@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
-include 'includes/Security_inc.php';
 include 'includes/db_connect.php';
+include 'includes/Security_inc.php';
+
 
 if(isset($_GET['id'])){
 $Pid=$_GET['id'];
@@ -9,13 +10,18 @@ $Pid=$_GET['id'];
     echo 'Error happened in the get';
     exit();
 }
-
 $sql="SELECT * FROM `property` WHERE id='$Pid'";
 $result= mysqli_query($databaseCon, $sql);
 $rows= mysqli_num_rows($result);
 
 if($rows > 0){
     $row=mysqli_fetch_assoc($result);
+    $sql2 = "SELECT c.*
+        FROM propertycategory c
+        JOIN property p ON c.id = p.property_category_id
+        ORDER BY (c.id = '" . $row['property_category_id'] . "') DESC;";
+
+    $result2= mysqli_query($databaseCon, $sql2);
 }
 else{
     echo 'Error happened ';
@@ -77,14 +83,16 @@ if(isset($_GET['error'])){
                         <label>Property Name:
                         <input type="text" name="Pname" id="pname" value="<?php echo $row['name'];?>"></label>
                     </li>
-                    <!--<li>
+                    <li>
                         <label>Category:</label>
                         <select id="Category" name="Pcate">
-                            <option value="1111">Apartment</option>
-                            <option value="22222">villa</option>
-                            <option value="33333">Delux</option>
+                            <?php
+                                while ($row2 = mysqli_fetch_assoc($result2)) {
+                                    echo '<option value="' . $row2['id'] . '">' . $row2['category'] . '</option>';
+                                }
+                            ?>
                         </select>
-                    </li>-->
+                    </li>
                     <li>
                         <label>Number of Rooms:
                         <input type="text" name="room" id="NOR" value="<?php echo $row['rooms'];?>"></label>
@@ -121,7 +129,7 @@ if(isset($_GET['error'])){
             $result= mysqli_query($databaseCon, $retrieve_query);
             //$rows= mysqli_num_rows($result);
 
-            if ($result->num_rows > 0) {
+            if (mysqli_num_rows($result) > 0) {
                 // Display the retrieved images
                 echo '<div id="img">';
                 while ($row = $result->fetch_assoc()) {
@@ -156,7 +164,9 @@ if(isset($_GET['error'])){
      </div>
      <br>
      <br>--> 
-  
+  <?php
+  mysqli_close($connection); 
+  ?>
    <!-- copyright -->
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
