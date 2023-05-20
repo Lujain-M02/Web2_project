@@ -8,8 +8,16 @@
         include 'includes/db_connect.php';
         include 'includes/login_inc.php';
        session_start();
+       
+      
+    if (!isset($_SESSION['id'])){
+            header("Location: index.php");
+            exit();
+    } else {
+        $userid=$_SESSION['id'];
+    }
         
-        $id = $_SESSION['id'];
+       
         
         $sql =  "SELECT * FROM homeowner WHERE id = $id";
           $result = mysqli_query($databaseCon, $sql); 
