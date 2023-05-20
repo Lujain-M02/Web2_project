@@ -11,10 +11,7 @@
           $result = mysqli_query($databaseCon, $sql); 
           $row = mysqli_fetch_assoc($result);
         
-           
-        $sql1 =  "SELECT DISTINCT p.id, p.name, p.rent_cost, pc.category, aps.status FROM RentalApplication r,Property p, applicationstatus aps, propertycategory pc WHERE r.home_seeker_id =$id AND r.property_id = p.id AND r.application_status_id = aps.id
- AND p.property_category_id = pc.id";
-        $result1 = mysqli_query($databaseCon, $sql1);  
+            
         
         $sql2 =  "SELECT p.id, p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result2 = mysqli_query($databaseCon, $sql2);  
@@ -24,6 +21,29 @@
         
         $sql4 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result4 = mysqli_query($databaseCon, $sql4);
+        
+        if(isset($_GET["id"])){
+        $homeID = $row['id'];
+   
+        $sql5 =  "SELECT  id FROM applicationstatus aps WHERE status ='under consideration'";
+        $result5 = mysqli_query($databaseCon, $sql5);
+        $row5 = mysqli_fetch_assoc($result5);
+        $apsId = $row5['id'];
+ 
+        $proName = $_GET['id'];
+        $sql6 =  "SELECT  id FROM propertycategory WHERE category ='$proName'";
+        $result6 = mysqli_query($databaseCon, $sql6);
+        $row6 = mysqli_fetch_assoc($result6);
+        $proId = $row6['id'];
+ 
+        $sql9 =  "SELECT  id FROM property WHERE property_category_id =$proId";
+        $result9 = mysqli_query($databaseCon, $sql9);
+        $row9 = mysqli_fetch_assoc($result9);
+        $pro = $row9['id'];
+ 
+        $sql7 = "INSERT INTO rentalapplication (property_id, home_seeker_id, application_status_id) values($pro,$homeID,$apsId)";
+        $result7 = mysqli_query($databaseCon, $sql7);
+       }
         
 ?>
 <!DOCTYPE html>
@@ -95,6 +115,9 @@
        <?php 
    
         if(isset($_GET["id"])){
+            $sql1 =  "SELECT DISTINCT p.id, p.name, p.rent_cost, pc.category, aps.status FROM RentalApplication r,Property p, applicationstatus aps, propertycategory pc WHERE r.home_seeker_id =$id AND r.property_id = p.id AND r.application_status_id = aps.id
+ AND p.property_category_id = pc.id";
+        $result1 = mysqli_query($databaseCon, $sql1); 
              while($row1 = mysqli_fetch_assoc($result1)){
                 $propertyId = $row1['id'];
                 echo "<tr>";
@@ -106,6 +129,9 @@
              } 
           }  
         else{
+            $sql1 =  "SELECT DISTINCT p.id, p.name, p.rent_cost, pc.category, aps.status FROM RentalApplication r,Property p, applicationstatus aps, propertycategory pc WHERE r.home_seeker_id =$id AND r.property_id = p.id AND r.application_status_id = aps.id
+ AND p.property_category_id = pc.id";
+        $result1 = mysqli_query($databaseCon, $sql1); 
             while($row1 = mysqli_fetch_assoc($result1))
             {
             $propertyId = $row1['id'];
@@ -223,28 +249,6 @@
          }}echo'll';
                     }}
         
-        if(isset($_GET["id"])){
-        $homeID = $row['id'];
-   
-        $sql5 =  "SELECT  id FROM applicationstatus aps WHERE status ='under consideration'";
-        $result5 = mysqli_query($databaseCon, $sql5);
-        $row5 = mysqli_fetch_assoc($result5);
-        $apsId = $row5['id'];
- 
-        $proName = $_GET['id'];
-        $sql6 =  "SELECT  id FROM propertycategory WHERE category ='$proName'";
-        $result6 = mysqli_query($databaseCon, $sql6);
-        $row6 = mysqli_fetch_assoc($result6);
-        $proId = $row6['id'];
- 
-        $sql9 =  "SELECT  id FROM property WHERE property_category_id =$proId";
-        $result9 = mysqli_query($databaseCon, $sql9);
-        $row9 = mysqli_fetch_assoc($result9);
-        $pro = $row9['id'];
- 
-        $sql7 = "INSERT INTO rentalapplication (property_id, home_seeker_id, application_status_id) values($pro,$homeID,$apsId)";
-        $result7 = mysqli_query($databaseCon, $sql7);
-       }
         ?>
 </table>
 </div>
