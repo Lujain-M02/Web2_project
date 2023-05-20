@@ -82,28 +82,9 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
     <main>
         
         <div id="name">
-            <h2>Sweet Home</h2>
+            <h2><?php echo $row1['name']; ?></h2>
         </div>
-        <br>
-        <div id="ApplyDdit">
-            <!--اعرض البتن حسب اليوزر-->
-            <?php 
-           
-                if($isOwner){
-                    echo "<a  href='EditProperty.php?id=".$row1['id']."'><button class='button'>Edit</button></a>";
-                }else{
-                    $sql = "SELECT * FROM `rentalapplication` WHERE property_id = $id AND home_seeker_id = $userid";
-                    $result = mysqli_query($databaseCon, $sql);
-                    
-                    
-                ////مهم اسوي اشيك هل هو سوا ابلاي من قبل او لا
-                   if(!$row = mysqli_fetch_assoc($result)){//if he didnt apply it do apply page
-                    echo "<a  href='includes/apply.php?id=".$row1['id']."'><button class='button'>Apply</button></a>";   
-                   }
-                    //الانكلود على حسب اذا بتحطين ملف الابلاي فيه ولا لا
-                }
-            ?>
-        </div>
+       
         <div id="DP">
             <ul>
             <li class="a">Category: <p><?php echo $category['category']; ?></p></li>
@@ -121,9 +102,29 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
            if(!$isOwner){
              // اعرض معلومات الاونر للسيكر فقط
              
-              echo ' <li class="a"> contact owner:<p>' .$owner['name'].' , 0' .$owner['phone_number'].' , ' .$owner['email_address'].' </p></li';
+              echo ' <li class="a"> contact owner:<p>' .$owner['name'].' , 0' .$owner['phone_number'].' , ' .$owner['email_address'].' </p></li>';
               } ?>
-            
+             <br>
+        <div id="ApplyDdit">
+            <!--اعرض البتن حسب اليوزر-->
+            <?php 
+           
+                if($isOwner){
+                    echo "<li class=\"a\"><a  href='EditProperty.php?id=".$row1['id']."'><button class='button'>Edit</button></a></li>";
+                }else{
+                    $sql = "SELECT * FROM `rentalapplication` WHERE property_id = $id AND home_seeker_id = $userid";
+                    $result = mysqli_query($databaseCon, $sql);
+                    
+                    
+                ////مهم اسوي اشيك هل هو سوا ابلاي من قبل او لا
+                   if(!$row = mysqli_fetch_assoc($result)){//if he didnt apply it do apply page
+                    echo "<li class=\"a\"><a  href='includes/apply.php?id=".$row1['id']."'><button class='button'>Apply</button></a></li>";   
+                   }
+                    //الانكلود على حسب اذا بتحطين ملف الابلاي فيه ولا لا
+                }
+            ?>
+        </div>
+             <br>
         </ul>
         </div>
          <?php foreach($images as $image){ ?>
