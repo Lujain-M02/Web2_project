@@ -6,8 +6,9 @@
     
     if ($_SERVER['REQUEST_METHOD']=="POST"){
            if (isset($_POST['email'])&& isset($_POST['password'])&& isset($_POST['droplist'])){
-               echo 'first if';
+               
                $email= mysqli_real_escape_string($databaseCon,$_POST['email']);
+               $pass=mysqli_real_escape_string($databaseCon,$_POST['password']);
                if($_POST['droplist']==1){
                    $TABLE_NAME="homeseeker";
                }
@@ -21,7 +22,7 @@
 
                if($rows > 0){
                    $row=mysqli_fetch_assoc($result);
-                   if(password_verify($_POST['password'], $row['password'])){
+                   if(password_verify($pass, $row['password'])){
                        $id=$row['id'];
                         $_SESSION['id']=$id;                        
                         if($_POST['droplist']==1){
