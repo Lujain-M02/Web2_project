@@ -6,7 +6,7 @@
 
 
         include 'includes/db_connect.php';
-        include 'includes/login_inc.php';
+        
        session_start();
        
       
