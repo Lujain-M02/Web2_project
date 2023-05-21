@@ -55,12 +55,20 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
           $result3 = mysqli_query($databaseCon, $sql3); 
           $row3 = mysqli_fetch_assoc($result3);
           
-          $sql4 =  "UPDATE rentalapplication r
+          /*$sql4 =  "UPDATE rentalapplication r
                     SET application_status_id=222222 
                     WHERE r.property_id= $propID AND home_seeker_id!=$hsID";
           $result4 = mysqli_query($databaseCon, $sql4); 
+          $row4 = mysqli_fetch_assoc($result4);*/
+          $sql4 =  "UPDATE rentalapplication 
+                    SET application_status_id=222222 
+                    WHERE property_id = $propID AND id <> $rentalID";
+          $result4 = mysqli_query($databaseCon, $sql4); 
           $row4 = mysqli_fetch_assoc($result4);
-        
+          
+        /*UPDATE rentalapplication 
+                    SET application_status_id=222222 
+                    WHERE property_id = $propID AND id <> $rentalID*/
     }
     
     header("Location: index.php");     
