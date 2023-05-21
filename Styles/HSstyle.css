@@ -59,7 +59,9 @@ table{
 
 .HS_body .copyright{margin-top: 15%;}
 
-form.submit{
+.SearchBy .submit{
+    height: 2em;
+    width: 10em;
     background-color: rgb(122, 180, 255);
     color: white;
     border-radius: 50px 20px;
@@ -67,3 +69,4 @@ form.submit{
     box-shadow: 1px 3px #888888;
     font-size: 15px;
 }
+

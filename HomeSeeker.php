@@ -16,8 +16,6 @@
         $sql2 =  "SELECT p.id, p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result2 = mysqli_query($databaseCon, $sql2);  
         
-        $sql4 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
-        $result4 = mysqli_query($databaseCon, $sql4);
         
         if(isset($_GET["id"])){
         $homeID = $row['id'];
@@ -111,7 +109,6 @@
     
        <?php 
    
-        if(isset($_GET["id"])){
             $sql1 =  "SELECT DISTINCT p.id, p.name, p.rent_cost, pc.category, aps.status FROM RentalApplication r,Property p, applicationstatus aps, propertycategory pc WHERE r.home_seeker_id =$id AND r.property_id = p.id AND r.application_status_id = aps.id
  AND p.property_category_id = pc.id";
         $result1 = mysqli_query($databaseCon, $sql1); 
@@ -124,27 +121,7 @@
                 echo "<td>".$row1['status']."</td>";
                 echo "</tr>"; 
              } 
-          }  
-        else{
-            $sql1 =  "SELECT DISTINCT p.id, p.name, p.rent_cost, pc.category, aps.status FROM RentalApplication r,Property p, applicationstatus aps, propertycategory pc WHERE r.home_seeker_id =$id AND r.property_id = p.id AND r.application_status_id = aps.id
- AND p.property_category_id = pc.id";
-        $result1 = mysqli_query($databaseCon, $sql1); 
-            while($row1 = mysqli_fetch_assoc($result1))
-            {
-            $propertyId = $row1['id'];
-                echo "<tr>";
-                echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row1['name']."</a></td>";
-                echo "<td>".$row1['category']."</td>";
-                echo "<td>".$row1['rent_cost']."</td>";
-                echo "<td>".$row1['status']."</td>";
-                echo "</tr>";
-            }
-       }  
-            
-            
-            
-            
-            
+ 
         ?>
 
 </table>
@@ -159,7 +136,7 @@
           <label>Search By: </label>
           <select name="Search">
             <?php
-             $sql3 =  "SELECT p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
+             $sql3 =  "SELECT pc.id, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
         $result3 = mysqli_query($databaseCon, $sql3);
              $category = null;
              while($row3 = mysqli_fetch_assoc($result3))
@@ -169,7 +146,7 @@
                  
                  $category = $row3["category"];
             
-                 echo '<option name ='.$row3["id"].'>'.$row3["category"].'</option>';
+                 echo '<option value ='.$row3["category"].'>'.$row3["category"].'</option>';
             }
             ?>
               
@@ -217,6 +194,27 @@
                 echo '</tr>';
         }}
         }else{
+        $sql4 =  "SELECT p.id,p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
+        $result4 = mysqli_query($databaseCon, $sql4);
+       if($_SERVER["REQUEST_METHOD"] == "POST"){
+        while($row4 = mysqli_fetch_assoc($result4)){ 
+           $select = $_POST["Search"];
+          if(isset($select)){
+                    if($select != $row4["category"]){
+                    continue;}
+                    else{
+                       $propertyId = $row4['id'];
+                       echo '<tr>';
+                       echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row4['name']."</a></td>";
+                       echo '<td>'.$row4["category"].'</td>';
+                       echo '<td>'.$row4["rent_cost"].'</td>';
+                       echo '<td>'.$row4["rooms"].'</td>';
+                       echo '<td>'.$row4["location"].'</td>';
+                       echo "<td><div><a href='HomeSeeker.php?id=".$row4["category"]."'class='apply'>Apply</a></div></td>";
+                       echo '</tr>'; 
+          }}
+           }}
+        else{
              while($row2 = mysqli_fetch_assoc($result2))
             {
                 $propertyId = $row2['id'];
@@ -230,23 +228,7 @@
                 echo '</tr>';
            }
         }
-        
-       if($_SERVER["REQUEST_METHOD"] == "POST"){
-        while($row4 = mysqli_fetch_assoc($result4)){ 
-           $select = $row4["category"];
-          if(isset($_POST[$select])){
-              echo 'mm';
-                    if($select == $row4["category"]){
-                       echo '<tr>';
-                       echo '<td><a href="PropertyDetails.php">'.$row4["name"].'</a></td>';
-                       echo '<td>'.$row4["category"].'</td>';
-                       echo '<td>'.$row4["rent_cost"].'</td>';
-                       echo '<td>'.$row4["rooms"].'</td>';
-                       echo '<td>'.$row4["location"].'</td>';
-                       echo '<td><div><button>Apply</button></div></td>';
-                       echo '</tr>'; 
-         }}echo'll';
-                    }}
+        }
         
         ?>
 </table>
