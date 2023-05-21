@@ -1,6 +1,6 @@
 <?php
 //include 'includes/Security_inc.php';
-include 'includes/Security_inc.php';
+/*include 'includes/Security_inc.php';
 include 'includes/db_connect.php';
 
 if(isset($_GET['id'])){
@@ -15,7 +15,7 @@ include 'includes/login_inc.php';
 session_start();
 
 if(isset($_POST["Submit"])){
-    $Property_Name = $_POST["PrName"];
+$Property_Name = $_POST["PrName"];
 //catogry
 $Number_of_Rooms= $_POST["numOfRooms"];
 $Rent = $_POST["rent"];
@@ -23,8 +23,68 @@ $Location = $_POST["location"];
 $Max_number_of_tenants = $_POST["numOfTen"];
 $Description = $_POST["desc"];
 $Upload_Pictures = $_POST["pic"];/////لازم أرجع أتأكد منها
+
+
     
-    
+}*/
+include 'includes/db_connect.php';
+include 'includes/Security_inc.php';
+
+
+
+if (!isset($_SESSION['id'])){
+            header("Location: index.php");
+            exit();
+    } else {
+        $id=$_SESSION['id'];
+    }
+
+if(isset($_POST["Submit"])){
+$Property_Name = $_POST["PrName"];
+//catogry
+$Number_of_Rooms= $_POST["numOfRooms"];
+$Rent = $_POST["rent"];
+$Location = $_POST["location"];
+$Max_number_of_tenants = $_POST["numOfTen"];
+$Description = $_POST["desc"];
+
+
+echo $Property_Name;
+echo $Number_of_Rooms;
+echo $Location;
+echo $Max_number_of_tenants;
+echo $Description;
+
+         
+          
+          
+
+ // Check if the form is submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if (isset($_POST['Submit'])&& is_uploaded_file($_FILES['images']['tmp_name'][0])) {
+        // Get the uploaded images
+        $images = $_FILES['images'];
+
+        // Loop through each image
+        foreach ($images['tmp_name'] as $key => $tmp_name) {
+            $image_name = $images['name'][$key];
+            $image_tmp = $images['tmp_name'][$key];
+
+                // Move the image to a directory
+                $target_dir = "uploads/";
+                $target_file = $target_dir . basename($image_name);
+
+                if (move_uploaded_file($image_tmp, $target_file)) {
+                    // Insert image path into the database
+                    $sql = "INSERT INTO image_table (path) VALUES ('$image_name')";
+                    $databaseCon->query($sql);
+                }
+            }
+        }else{
+            echo 'you did not upload';
+    }}
+
+
 }
 
 
@@ -66,7 +126,7 @@ $Upload_Pictures = $_POST["pic"];/////لازم أرجع أتأكد منها
 
  
       <main>
-        <form class="myForm" method="post" enctype="multipart/form-data">
+        <form class="myForm" method="POST" action="" enctype="multipart/form-data">
             <fieldset>
                 <legend>Property Details</legend>
                 <ul>
@@ -102,14 +162,17 @@ $Upload_Pictures = $_POST["pic"];/////لازم أرجع أتأكد منها
                         <textarea name="desc" id="Des" rows="6" cols="30"></textarea></label>
                     </li>
                     <li>
-                        <label>Upload Pictures:
-                        <input type="file" name="pic" id="myFile" accept="image/png, image/jpeg"></label>
+                        <label>Upload Image:
+                            <input type="file" name="images[]" accept="image/*" multiple>
+                        </label>
                     </li>
                 </ul>
                 <button name = "Submit" class="button">Submit</button>
                 <button  name = "Reset" class="button">Reset</button>
             </fieldset>
         </form>
+          
+          
      </main>
      
   
