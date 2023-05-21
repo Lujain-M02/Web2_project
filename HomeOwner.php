@@ -172,7 +172,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
                 echo '<td>'.$row2["rooms"].'</td>';
                 echo '<td>'.$row2["location"].'</td>';
                  $prName = $row2["name"];
-                echo "<td><button type = 'submit' name = 'btn3'><a href='Delete.php?pid=$propertyId&name=$prName'>Delete</a></button></td> " ;
+                echo "<td><button type = 'submit' name = 'btn3'><a href='Delete.php?pid=$propertyId'>Delete</a></button></td> " ;
                 echo '</tr>';
             }
             

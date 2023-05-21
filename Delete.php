@@ -8,22 +8,22 @@ include 'includes/db_connect.php';
 
 
 
-if (isset($_GET['pid'])&&isset($_GET['name'])) {
+if (isset($_GET['pid'])) {
   $propID = $_GET['pid'];
-  $propName = $_GET['name'];
-  //echo $propName;
+
+  echo '$propName';
   
-  $sql1 =  "DELETE FROM propertyimage WHERE property_id = $propID";
+  $sql1 =  "DELETE FROM propertyimage WHERE property_id = '$propID'";
   $result1 = mysqli_query($databaseCon, $sql1); 
-  $row1 = mysqli_fetch_assoc($result1);
-  
-   $sql2 =  "DELETE FROM rentalapplication WHERE property_id = $propID";
+  //$row1 = mysqli_fetch_assoc($result1);
+  echo '$propName';
+   $sql2 =  "DELETE FROM rentalapplication WHERE property_id = '$propID'";
   $result2 = mysqli_query($databaseCon, $sql2); 
-  $row2 = mysqli_fetch_assoc($result2);
+  //$row2 = mysqli_fetch_assoc($result2);
   
-   $sql3 =  "DELETE FROM property WHERE id = $propID";
+   $sql3 =  "DELETE FROM property WHERE id = '$propID'";
   $result3 = mysqli_query($databaseCon, $sql3); 
-  $row3 = mysqli_fetch_assoc($result3);
+  //$row3 = mysqli_fetch_assoc($result3);
           
     
           //1//DELETE FROM propertyimage WHERE property_id = 1
@@ -33,3 +33,4 @@ if (isset($_GET['pid'])&&isset($_GET['name'])) {
   
  header("Location: HomeOwner.php");
 }
+?>
