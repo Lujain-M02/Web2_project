@@ -29,7 +29,7 @@ FROM homeseeker hs,property p,rentalapplication r,applicationstatus a
 WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status_id = a.id AND p.homeowner_id = $id";
         $result1 = mysqli_query($databaseCon, $sql1);  
         
-        $sql2 =  "SELECT p.name,pc.category ,p.rent_cost,p.rooms, p.location
+        $sql2 =  "SELECT p.name,pc.category ,p.rent_cost,p.rooms, p.location ,p.id AS pid
 FROM Property p, propertycategory pc
 WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         $result2 = mysqli_query($databaseCon, $sql2);  
@@ -165,8 +165,9 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         
          while($row2 = mysqli_fetch_assoc($result2))
             {
+                $propertyId = $row2['pid'];
                 echo '<tr>';
-                echo '<td><a href="PropertyDetails.php">'.$row2["name"].'</a></td>';
+                echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row2['name']."</a></td>";
                 echo '<td>'.$row2["category"].'</td>';
                 echo '<td>'.$row2["rent_cost"].'</td>';
                 echo '<td>'.$row2["rooms"].'</td>';
