@@ -6,7 +6,7 @@
  */
 
 include 'includes/db_connect.php';
-        include 'includes/login_inc.php';
+       
 echo'hi'.$_GET['name'];        
 echo 'hi'.$_GET['id'];
 

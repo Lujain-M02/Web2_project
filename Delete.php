@@ -5,7 +5,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 include 'includes/db_connect.php';
-include 'includes/login_inc.php';
+
 
 
 if (isset($_GET['pid'])&&isset($_GET['name'])) {
