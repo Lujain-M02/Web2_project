@@ -7,8 +7,8 @@
 
 include 'includes/db_connect.php';
        
-echo'hi'.$_GET['name'];        
-echo 'hi'.$_GET['id'];
+//echo'hi'.$_GET['name'];        
+//echo 'hi'.$_GET['id'];
 
 if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['name']) ) {
   $rentalID = $_GET['id'];
@@ -71,7 +71,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
                     WHERE property_id = $propID AND id <> $rentalID*/
     }
     
-    header("Location: index.php");     
+    header("Location: HomeOwner.php");     
           
           
           

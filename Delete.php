@@ -11,7 +11,7 @@ include 'includes/db_connect.php';
 if (isset($_GET['pid'])&&isset($_GET['name'])) {
   $propID = $_GET['pid'];
   $propName = $_GET['name'];
-  echo $propName;
+  //echo $propName;
   
   $sql1 =  "DELETE FROM propertyimage WHERE property_id = $propID";
   $result1 = mysqli_query($databaseCon, $sql1); 
@@ -31,6 +31,5 @@ if (isset($_GET['pid'])&&isset($_GET['name'])) {
           //3//DELETE FROM property WHERE id = 1
   
   
- 
+ header("Location: HomeOwner.php");
 }
-header("Location: index.php");
