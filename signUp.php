@@ -139,4 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p>&#169; YOUR HOME 2023.com</p>
   </div> 
 </body>
+<?php
+  mysqli_close($databaseCon); 
+  ?>
 </html>
