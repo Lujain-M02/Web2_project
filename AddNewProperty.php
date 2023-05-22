@@ -11,6 +11,7 @@ if (!isset($_SESSION['id'])){
     } else {
         $id=$_SESSION['id'];
     }
+    
 //include 'includes/Security_inc.php';
 /*include 'includes/Security_inc.php';
 include 'includes/db_connect.php';
@@ -78,7 +79,7 @@ echo $Description;*/
         if (!empty($_POST['PrName']) && !empty($_POST['numOfRooms']) && !empty($_POST['rent']) && !empty($_POST['location']) && !empty($_POST['numOfTen']) && !empty($_POST['desc'])) {
 
         // Retrieve the submitted form data
-        $PrName = $_POST['PrName'];
+        $PrName = strval($_POST['PrName']);
         //catogry
         $numOfRooms = $_POST['numOfRooms'];
         $rent = $_POST['rent'];
@@ -86,16 +87,18 @@ echo $Description;*/
         $numOfTen = $_POST['numOfTen'];
         $desc = $_POST['desc'];
         $Pcata=$_POST['Pcate'];
-        $SringHOid = $_POST['HOid'];
-        $HOid = (int)$SringHOid;
-        echo $HOid;
-        /*echo $PrName;
-        echo $numOfRooms;
-        echo $rent;
-        echo $location;
-        echo $numOfTen;
-        echo $desc;
-        echo $Pcata;*/
+        $HOid = $_POST['idho'];
+ 
+        
+        echo '$id'.$id;
+       
+        echo '$Pcata'.$Pcata;
+        echo '$PrName'.$PrName;
+        echo '$numOfRooms'.$numOfRooms;
+        echo '$rent'.$rent;
+        echo '$location'.$location;
+        echo '$numOfTen'.$numOfTen;
+        echo '$desc'.$desc;
 
         
         $PrName = mysqli_real_escape_string($databaseCon, $PrName);
@@ -105,16 +108,19 @@ echo $Description;*/
         $numOfTen = mysqli_real_escape_string($databaseCon, $numOfTen);
         $desc = mysqli_real_escape_string($databaseCon, $desc);
         
-        $id = $id+1;
-        $query = "INSERT INTO `property`"
-                . "(`id`, `homeowner_id`, "
+        
+        /*$query = "INSERT INTO `property`"
+                . "(`id`, `homeowner_id`, " 
                 . "`property_category_id`, "
                 . "`name`, `rooms`, `rent_cost`, "
                 . "`location`, `max_tenants`, "
                 . "`description`) VALUES "
                 . "('$id','$HOid','$Pcata',"
                 . "'$PrName','$numOfRooms',"
-                . "'$rent','$location','$numOfTen','$desc')";
+                . "'$rent','$location','$numOfTen','$desc')";*/
+        
+        $query = "INSERT INTO `property`(`id`, `homeowner_id`, `property_category_id`, `name`, `rooms`, `rent_cost`, `location`, `max_tenants`, `description`) VALUES (Null,'$id','$Pcata','$PrName','$numOfRooms','$rent','$location','$numOfTen','$desc')";
+        
 
         
         $result = mysqli_query($databaseCon, $query);
@@ -156,7 +162,7 @@ echo $Description;*/
         
                
     } else {
-        header("Location: ../EditProperty.php?id=".$Pid."&error=error");
+        header("Location:EditProperty.php?id=".$Pid."&error=error");
     }
         }
     
