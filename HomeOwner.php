@@ -24,7 +24,7 @@
           $row = mysqli_fetch_assoc($result);
         
            
-        $sql1 =  "SELECT p.name,p.location,hs.first_name,hs.last_name,a.status,hs.id AS HSid ,p.id ,r.id AS rid,p.homeowner_id AS HOid
+        $sql1 =  "SELECT p.name,p.location,hs.first_name,hs.last_name,a.status,hs.id AS HSid ,p.id ,r.id AS rid
 FROM homeseeker hs,property p,rentalapplication r,applicationstatus a
 WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status_id = a.id AND p.homeowner_id = $id";
         $result1 = mysqli_query($databaseCon, $sql1);  
@@ -34,9 +34,9 @@ FROM Property p, propertycategory pc
 WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         $result2 = mysqli_query($databaseCon, $sql2);  
 
-        $sql3 =  "SELECT p.name,pc.category ,p.rent_cost,p.rooms, p.location
-FROM Property p, propertycategory pc
-WHERE homeowner_id= $id AND p.property_category_id= pc.id";
+        $sql3 =  "SELECT p.homeowner_id AS HOid
+FROM homeowner ho, Property p
+WHERE ho.id = p.homeowner_id AND p.id= $id";
         $result3 = mysqli_query($databaseCon, $sql3); 
         
         $sql4 =  "SELECT p.name,pc.category ,p.rent_cost,p.rooms, p.location
@@ -117,7 +117,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
                 echo $a.":".$b."<br>";
             }*/
             $propertyId = $row1['id'];
-            $HOid = $row1['HOid'];
+            
             $applicantInfo= $row1['HSid']; //الاي دي لازم أغيره
             $rentalappID = $row1['rid'];
             $DECptn = "decline";
@@ -144,13 +144,15 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
   
             }
             echo"</table>";
-            echo "<div class='Add_button'><button><a href='AddNewProperty.php?HOid=$HOid' >Add Proproty</a></button></div>";
-   
+            /*$row3 = mysqli_fetch_row($result3);
+            $HOid = $row3['HOid'];
+            echo "hiiiiiii".$HOid;*/
+            echo "<div class='Add_button'><button><a href='AddNewProperty.php'>Add New Proproty</a></button></div>";
+            //echo "<button type = 'submit' name = 'btn1'><a href='updateStatus.php?id=$rentalappID'>Add</a></button> " ;
         ?>
   
     
 
-    
 
 <!-- ---------------------------------------second table -------------------------------------------------->
     <table class="SecondHO_table">
