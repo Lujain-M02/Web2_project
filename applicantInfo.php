@@ -103,13 +103,13 @@ else{
 	<script src="https://unpkg.com/popper.js@1/dist/umd/popper.min.js"></script>
 	<script src="https://unpkg.com/tippy.js@4"></script>
 	
-    <?php
-  mysqli_close($connection); 
-  ?>
    <!-- copyright -->
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
 
 </body>
+    <?php
+  mysqli_close($connection); 
+  ?>
 </html>
