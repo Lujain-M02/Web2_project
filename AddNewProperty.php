@@ -169,7 +169,7 @@ echo $Description;*/
    
            
            
-         mysqli_close($connection);  
+          
            
            
            
@@ -274,4 +274,7 @@ echo $Description;*/
   </div>
 
 </body>
+<?php
+mysqli_close($connection); 
+?>
 </html>
