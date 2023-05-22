@@ -36,7 +36,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
                     SET application_status_id=222222 
                     WHERE id =$rentalID";
           $result2 = mysqli_query($databaseCon, $sql2); 
-          $row2 = mysqli_fetch_assoc($result2);  
+           
    }
           //ضابط ويشتغل كود لل Decline
           /*$sql2 =  "UPDATE rentalapplication
@@ -53,7 +53,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
                     SET application_status_id=333333 
                     WHERE id =$rentalID";
           $result3 = mysqli_query($databaseCon, $sql3); 
-          $row3 = mysqli_fetch_assoc($result3);
+          
           
           /*$sql4 =  "UPDATE rentalapplication r
                     SET application_status_id=222222 
@@ -64,7 +64,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
                     SET application_status_id=222222 
                     WHERE property_id = $propID AND id <> $rentalID";
           $result4 = mysqli_query($databaseCon, $sql4); 
-          $row4 = mysqli_fetch_assoc($result4);
+          
           
         /*UPDATE rentalapplication 
                     SET application_status_id=222222 
