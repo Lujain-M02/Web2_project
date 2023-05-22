@@ -118,7 +118,7 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
                     
                 ////مهم اسوي اشيك هل هو سوا ابلاي من قبل او لا
                    if(!$row = mysqli_fetch_assoc($result)){//if he didnt apply it do apply page
-                    echo "<li class=\"a\"><a  href='HomeSeeker.php?id=".$category['category']."'><button class='button'>Apply</button></a></li>";   
+                    echo "<li class=\"a\"><a  href='includes/apply.php?id=".$row1['id']."'><button class='button'>Apply</button></a></li>";   
                    }
                     //الانكلود على حسب اذا بتحطين ملف الابلاي فيه ولا لا
                 }
@@ -141,4 +141,7 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
         <p>&#169; YOUR HOME 2023.com</p>
       </div>
 </body>
+<?php
+  mysqli_close($databaseCon); 
+  ?>
 </html>
