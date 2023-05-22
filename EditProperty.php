@@ -143,34 +143,15 @@ if(isset($_GET['error'])){
             }
             ?>
 
-        <!-- comment 
-        <div id="img">
-          <button class="button">Upload images</button>
-          <br><br><br><br>
-          <button class="Delete">Delete</button>
-            <img src="image/fet1.png">
-            <br><br>
-            <button class="Delete">Delete</button>
-            <img src="image/fet2.png">
-            <br><br>
-            <button class="Delete">Delete</button>
-            <img src="image/fet3.png">
-        </div>
-        <br>
-      </main>
-      
-      <div id="Save">
-      <button  class="button" onclick="window.location.href='PropertyDetails.php';">Save</button>
-     </div>
-     <br>
-     <br>--> 
-  <?php
-  mysqli_close($connection); 
-  ?>
+ 
+
    <!-- copyright -->
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
 
 </body>
+  <?php
+  mysqli_close($connection); 
+  ?>
 </html>
