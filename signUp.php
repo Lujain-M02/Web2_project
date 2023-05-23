@@ -37,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $idff=mysqli_query($databaseCon, $idnum);
       $num=mysqli_num_rows($idff)+1;
       
-
-
                 $query = "INSERT INTO `homeseeker` (id,first_name,last_name,age,family_members,income,job,phone_number,email_address,password)"
                             . " VALUES('$num','$fname', '$lname', '$age', '$numOfF', '$income', '$job', '$telnumber', '$email', '".password_hash($password,PASSWORD_DEFAULT)."');";
                        
@@ -46,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   if ($result) {
     $sql = "SELECT * FROM `homeseeker` WHERE email_address='$email' ";
-            //. "//and password='".password_hash($password,PASSWORD_DEFAULT)."'";
     $result = mysqli_query($databaseCon, $sql) or die(mysqli_error($databaseCon));
     $rows = mysqli_num_rows($result);
     
@@ -57,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['id']=$id;                        
         $_SESSION['role']="home seeker";
         header("Location: HomeSeeker.php");
-                        }
+          }
     }
     else{
       $msg = '<h4 style="color:red;">Error in signup.</h4>';
