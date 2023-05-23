@@ -16,67 +16,6 @@ if (!isset($_SESSION['id'])){
     } else {
         $id=$_SESSION['id'];
     }
-    
-//include 'includes/Security_inc.php';
-/*include 'includes/Security_inc.php';
-include 'includes/db_connect.php';
-
-if(isset($_GET['id'])){
-$Pid=$_GET['id'];
-}else {
-    echo 'Error happened in the get';
-    exit();
-}
-
-include 'includes/db_connect.php';
-include 'includes/login_inc.php';
-session_start();
-
-if(isset($_POST["Submit"])){
-$Property_Name = $_POST["PrName"];
-//catogry
-$Number_of_Rooms= $_POST["numOfRooms"];
-$Rent = $_POST["rent"];
-$Location = $_POST["location"];
-$Max_number_of_tenants = $_POST["numOfTen"];
-$Description = $_POST["desc"];
-$Upload_Pictures = $_POST["pic"];/////لازم أرجع أتأكد منها
-
-
-    
-}*/
-/*include 'includes/db_connect.php';
-include 'includes/Security_inc.php';
-
-
-
-if (!isset($_SESSION['id'])){
-            header("Location: index.php");
-            exit();
-    } else {
-        $id=$_SESSION['id'];
-    }
-
-if(isset($_POST["Submit"])){
-$Property_Name = $_POST["PrName"];
-//catogry
-$Number_of_Rooms= $_POST["numOfRooms"];
-$Rent = $_POST["rent"];
-$Location = $_POST["location"];
-$Max_number_of_tenants = $_POST["numOfTen"];
-$Description = $_POST["desc"];
-
-
-echo $Property_Name;
-echo $Number_of_Rooms;
-echo $Location;
-echo $Max_number_of_tenants;
-echo $Description;*/
-
-         
-          
-          
-
 
   
     if ($_SERVER['REQUEST_METHOD']=="POST"){
@@ -113,17 +52,7 @@ echo $Description;*/
         $numOfTen = mysqli_real_escape_string($databaseCon, $numOfTen);
         $desc = mysqli_real_escape_string($databaseCon, $desc);
         
-        
-        /*$query = "INSERT INTO `property`"
-                . "(`id`, `homeowner_id`, " 
-                . "`property_category_id`, "
-                . "`name`, `rooms`, `rent_cost`, "
-                . "`location`, `max_tenants`, "
-                . "`description`) VALUES "
-                . "('$id','$HOid','$Pcata',"
-                . "'$PrName','$numOfRooms',"
-                . "'$rent','$location','$numOfTen','$desc')";*/
-        
+
         $query = "INSERT INTO `property`(`id`, `homeowner_id`, `property_category_id`, `name`, `rooms`, `rent_cost`, `location`, `max_tenants`, `description`) VALUES (Null,'$id','$Pcata','$PrName','$numOfRooms','$rent','$location','$numOfTen','$desc')";
         
         $result = mysqli_query($databaseCon, $query);
@@ -141,8 +70,7 @@ echo $Description;*/
                 
                 $target_dir = "upload/";
                 $target_file = $target_dir . basename($image_name);
-                
-                //$last_id = mysqli_insert_id($databaseCon);
+
 
                 if (move_uploaded_file($image_tmp, $target_file)) {
                     
@@ -159,12 +87,7 @@ echo $Description;*/
           echo "Add failed. Error: " . mysqli_error($databaseCon);
         }
         
-        
-        
-
-        
-
-               
+     
         
                
     } else{
@@ -179,4 +102,4 @@ echo $Description;*/
           
 
 
-mysqli_close($connection); 
+mysqli_close($connection); ?>

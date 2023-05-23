@@ -7,8 +7,7 @@
 
 include 'includes/db_connect.php';
        
-//echo'hi'.$_GET['name'];        
-//echo 'hi'.$_GET['id'];
+
 
 if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['name']) ) {
   $rentalID = $_GET['id'];
@@ -24,13 +23,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
   echo'Button 2 was clicked';
 }
 
-  /*$sql =  "SELECT * FROM rentalapplication WHERE id = $rentalID";
-          $result = mysqli_query($databaseCon, $sql); 
-          $row = mysqli_fetch_assoc($result);
-          
-          foreach ($row as $a=>$b){
-                echo $a.":".$b."<br>";
-          }*/
+
    if($btn == "decline"){
      $sql2 =  "UPDATE rentalapplication
                     SET application_status_id=222222 
@@ -38,12 +31,7 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
           $result2 = mysqli_query($databaseCon, $sql2); 
            
    }
-          //ضابط ويشتغل كود لل Decline
-          /*$sql2 =  "UPDATE rentalapplication
-                    SET application_status_id=222222 
-                    WHERE id =$rentalID";
-          $result2 = mysqli_query($databaseCon, $sql2); 
-          $row2 = mysqli_fetch_assoc($result2);*/
+      
           
           foreach ($row2 as $h=>$k){
                 echo $h.":".$k."<br>";
@@ -55,20 +43,12 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
           $result3 = mysqli_query($databaseCon, $sql3); 
           
           
-          /*$sql4 =  "UPDATE rentalapplication r
-                    SET application_status_id=222222 
-                    WHERE r.property_id= $propID AND home_seeker_id!=$hsID";
-          $result4 = mysqli_query($databaseCon, $sql4); 
-          $row4 = mysqli_fetch_assoc($result4);*/
+       
           $sql4 =  "UPDATE rentalapplication 
                     SET application_status_id=222222 
                     WHERE property_id = $propID AND id <> $rentalID";
           $result4 = mysqli_query($databaseCon, $sql4); 
-          
-          
-        /*UPDATE rentalapplication 
-                    SET application_status_id=222222 
-                    WHERE property_id = $propID AND id <> $rentalID*/
+       
     }
     
     header("Location: HomeOwner.php");     
@@ -80,3 +60,4 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
   mysqli_close($databaseCon); 
 
  
+?>

@@ -113,41 +113,32 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         <?php 
         while($row1 = mysqli_fetch_assoc($result1))
             {
-            /*foreach ($row1 as $a=>$b){
-                echo $a.":".$b."<br>";
-            }*/
+         
             $propertyId = $row1['id'];
             
             $applicantInfo= $row1['HSid']; 
             $rentalappID = $row1['rid'];
             $DECptn = "decline";
             $ACCptn = "accept";
-            //echo '$row1["rid"]'.$row1['rid'];
                 echo "<tr>";
                 echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row1['name']."</a></td>";
                 echo "<td>".$row1['location']."</td>";
                 
                 echo "<td><a href='applicantInfo.php?id=$applicantInfo'>".$row1['first_name']." ".$row1['last_name']."</a></td>";
-                //echo "<td>".$row1['first_name']." ".$row1['last_name']."</td>";
                 
                 echo "<td>".$row1['status']."</td>";
                 
                 if($row1['status']=="under consideration"){
                     echo "<td><button type = 'submit' name = 'btn1'><a href='updateStatus.php?id=$rentalappID&pid=$propertyId&hsid=$applicantInfo&name=$ACCptn'>Accept</a></button></td> " ;
                     echo "<td><button type = 'submit' name = 'btn2'><a href='updateStatus.php?id=$rentalappID&pid=$propertyId&hsid=$applicantInfo&name=$DECptn'>Declin</a></button></td> " ;
-                    //echo "<form method='GET' action=$url><td><button type='submit' name='button1'><a href='updateStatus.php?id=$rentalappID'>Decline</a></button></td></form>";  
-                    //echo "<form method='GET' action=\"updateStatus.php?id=$rentalappID &pid =$propertyId &hsid=$applicantInfo\"><td><button type='submit' name='button1'><a href='updateStatus.php?id=$rentalappID'>Decline</a></button></td></form>";  
                 }
                 
                 
   
             }
             echo"</table>";
-            /*$row3 = mysqli_fetch_row($result3);
-            $HOid = $row3['HOid'];
-            echo "hiiiiiii".$HOid;*/
+            
             echo "<div class='Add_button'><button><a href='AddNewProperty.php'>Add New Proproty</a></button></div>";
-            //echo "<button type = 'submit' name = 'btn1'><a href='updateStatus.php?id=$rentalappID'>Add</a></button> " ;
         ?>
   
     

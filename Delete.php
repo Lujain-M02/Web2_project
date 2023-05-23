@@ -15,21 +15,14 @@ if (isset($_GET['pid'])) {
   
   $sql1 =  "DELETE FROM propertyimage WHERE property_id = '$propID'";
   $result1 = mysqli_query($databaseCon, $sql1); 
-  //$row1 = mysqli_fetch_assoc($result1);
+  
   echo '$propName';
    $sql2 =  "DELETE FROM rentalapplication WHERE property_id = '$propID'";
   $result2 = mysqli_query($databaseCon, $sql2); 
-  //$row2 = mysqli_fetch_assoc($result2);
   
    $sql3 =  "DELETE FROM property WHERE id = '$propID'";
   $result3 = mysqli_query($databaseCon, $sql3); 
-  //$row3 = mysqli_fetch_assoc($result3);
-          
-    
-          //1//DELETE FROM propertyimage WHERE property_id = 1
-          //2//DELETE FROM rentalapplication WHERE property_id = 1
-          //3//DELETE FROM property WHERE id = 1
-  
+
   
  header("Location: HomeOwner.php");
 }
