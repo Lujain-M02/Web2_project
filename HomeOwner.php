@@ -31,7 +31,9 @@ WHERE r.property_id = p.id AND r.home_seeker_id = hs.id AND r.application_status
         
         $sql2 =  "SELECT p.name,pc.category ,p.rent_cost,p.rooms, p.location ,p.id AS pid 
 FROM Property p, propertycategory pc
-WHERE homeowner_id= $id AND p.property_category_id= pc.id";
+WHERE homeowner_id= $id AND p.property_category_id= pc.id AND p.id NOT IN(SELECT p.id 
+                                                                     FROM Property p ,rentalapplication r
+                                                                     WHERE p.id = r.property_id AND r.application_status_id = 333333)";
         $result2 = mysqli_query($databaseCon, $sql2);  
 
         $sql3 =  "SELECT p.homeowner_id AS HOid
