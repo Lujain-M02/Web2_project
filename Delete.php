@@ -33,4 +33,6 @@ if (isset($_GET['pid'])) {
   
  header("Location: HomeOwner.php");
 }
+  mysqli_close($databaseCon); 
+
 ?>

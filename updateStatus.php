@@ -77,5 +77,6 @@ if (isset($_GET['id'])&&isset($_GET['pid'])&&isset($_GET['hsid'])&&isset($_GET['
           
 }
 
+  mysqli_close($databaseCon); 
 
  

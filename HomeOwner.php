@@ -118,7 +118,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
             }*/
             $propertyId = $row1['id'];
             
-            $applicantInfo= $row1['HSid']; //الاي دي لازم أغيره
+            $applicantInfo= $row1['HSid']; 
             $rentalappID = $row1['rid'];
             $DECptn = "decline";
             $ACCptn = "accept";
@@ -126,7 +126,6 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
                 echo "<tr>";
                 echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row1['name']."</a></td>";
                 echo "<td>".$row1['location']."</td>";
-                //الاي دي لازم أغيره
                 
                 echo "<td><a href='applicantInfo.php?id=$applicantInfo'>".$row1['first_name']." ".$row1['last_name']."</a></td>";
                 //echo "<td>".$row1['first_name']." ".$row1['last_name']."</td>";
