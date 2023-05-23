@@ -125,15 +125,6 @@ echo $Description;*/
         
         $result = mysqli_query($databaseCon, $query);
 
-        
-        if ($result) {
-          echo "Added successful!";
-          header("Location: ../PropertyDetails.php?id=".$id);
-        } else {
-          echo "Add failed. Error: " . mysqli_error($databaseCon);
-        }
-        
-        
         if ( is_uploaded_file($_FILES['images']['tmp_name'][0])) {
         
         $images = $_FILES['images'];
@@ -148,22 +139,29 @@ echo $Description;*/
                 $target_file = $target_dir . basename($image_name);
 
                 if (move_uploaded_file($image_tmp, $target_file)) {
-                    $last_id = mysqli_insert_id($databaseCon);
-                    echo "hi".$last_id;
-                    $sql = "INSERT INTO 'propertyimage'('property_id', 'path') VALUES ('$last_id','$image_name')";
+                    
+                    $sql = "INSERT INTO `propertyimage`(`property_id`, `path`) VALUES ('26','$image_name')";
                     $databaseCon->query($sql);
                 }
             }
         }
+        
+        if ($result) {
+          echo "Added successful!";
+          header("Location:PropertyDetails.php?id=26");
+        } else {
+          echo "Add failed. Error: " . mysqli_error($databaseCon);
+        }
+        
+        
+        
 
         
 
                
         
                
-    } else {
-        header("Location:EditProperty.php?id=".$Pid."&error=error");
-    }
+    } 
         }
     
    
