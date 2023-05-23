@@ -1,5 +1,5 @@
 <?php
-//include 'includes/Security_inc.php';
+include 'includes/Security_inc.php';
     //if ($_SESSION['role']!='home owner'){
     //        header("Location: HomeSeeker.php");
     //}
@@ -194,4 +194,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         </div>
 
 </body>
+<?php
+mysqli_close($connection); 
+?>
 </html>

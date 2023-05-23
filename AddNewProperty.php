@@ -258,7 +258,7 @@ echo $Description;*/
                     </li>
                 </ul>
                 <button name = "Submit" class="button">Submit</button>
-                <button  name = "Reset" class="button">Reset</button>
+                <button  type="reset" name = "Reset" class="button">Reset</button>
             </fieldset>
         </form>
           
