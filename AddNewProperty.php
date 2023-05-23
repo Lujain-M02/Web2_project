@@ -121,8 +121,6 @@ echo $Description;*/
         
         $query = "INSERT INTO `property`(`id`, `homeowner_id`, `property_category_id`, `name`, `rooms`, `rent_cost`, `location`, `max_tenants`, `description`) VALUES (Null,'$id','$Pcata','$PrName','$numOfRooms','$rent','$location','$numOfTen','$desc')";
         
-
-        
         $result = mysqli_query($databaseCon, $query);
 
         if ( is_uploaded_file($_FILES['images']['tmp_name'][0])) {
@@ -137,10 +135,12 @@ echo $Description;*/
                 
                 $target_dir = "upload/";
                 $target_file = $target_dir . basename($image_name);
+                
+                $last_id = mysqli_insert_id($databaseCon);
 
                 if (move_uploaded_file($image_tmp, $target_file)) {
                     
-                    $sql = "INSERT INTO `propertyimage`(`property_id`, `path`) VALUES ('26','$image_name')";
+                    $sql = "INSERT INTO `propertyimage`(`property_id`, `path`) VALUES ('$last_id','$image_name')";
                     $databaseCon->query($sql);
                 }
             }
@@ -148,7 +148,7 @@ echo $Description;*/
         
         if ($result) {
           echo "Added successful!";
-          header("Location:PropertyDetails.php?id=26");
+          header("Location:PropertyDetails.php?id='$last_id'");
         } else {
           echo "Add failed. Error: " . mysqli_error($databaseCon);
         }
