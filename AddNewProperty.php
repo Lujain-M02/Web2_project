@@ -161,14 +161,19 @@ echo $Description;*/
                
         
                
-    } 
+    } else{
+            header("Location: AddNewProperty.php?error=error");     
+
+    }
         }
     
    
            
            
           
-           
+     if(isset($_GET['error'])){
+    echo '<script>alert("please fill all the information");</script>';
+}      
            
            
            
