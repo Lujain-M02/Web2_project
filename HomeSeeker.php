@@ -214,7 +214,7 @@
                        echo '<td>'.$row4["rent_cost"].'</td>';
                        echo '<td>'.$row4["rooms"].'</td>';
                        echo '<td>'.$row4["location"].'</td>';
-                       echo "<td><div><a href='HomeSeeker.php?id=".$row4["category"]."'class='apply'>Apply</a></div></td>";
+                       echo "<td><div><a href='includes/apply.php?id=".$row4["id"]."'class='apply'>Apply</a></div></td>";
                        echo '</tr>'; 
           }}
            }}
@@ -228,7 +228,7 @@
                 echo '<td>'.$row2["rent_cost"].'</td>';
                 echo '<td>'.$row2["rooms"].'</td>';
                 echo '<td>'.$row2["location"].'</td>';
-                echo "<td><div><a href='HomeSeeker.php?id=".$row2["category"]."'class='apply'>Apply</a></div></td>";
+                echo "<td><div><a href='includes/apply.php?id=".$row2["id"]."'class='apply'>Apply</a></div></td>";
                 echo '</tr>';
            }
         }
@@ -247,5 +247,7 @@
   </div>
 
 </body>
-
+<?php
+mysqli_close($connection); 
+?>
 </html>
