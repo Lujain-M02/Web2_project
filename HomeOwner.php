@@ -81,7 +81,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
      
     </div>
   </header>
-
+     <div>
     <div class="WelcomeHO"> 
         <!--<a href="index.php"><img class="logOut" src="image/logOut.png" alt="Log out" width="120" height="80"> </a>-->      
         <h1>Welcome <div class="HO_name"><?php echo $row["name"]." !"; ?></div></h1>
@@ -176,10 +176,10 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         ?>
     </table>
 
-
+     </div>
     <!-- copyright -->
 <br>
-        <div class="copyright">
+        <div class="copyright" style="margin-block-start: 133px;">
             <p>&#169; YOUR HOME 2023.com</p>
         </div>
 
