@@ -127,6 +127,7 @@ echo $Description;*/
         $query = "INSERT INTO `property`(`id`, `homeowner_id`, `property_category_id`, `name`, `rooms`, `rent_cost`, `location`, `max_tenants`, `description`) VALUES (Null,'$id','$Pcata','$PrName','$numOfRooms','$rent','$location','$numOfTen','$desc')";
         
         $result = mysqli_query($databaseCon, $query);
+        $last_id = mysqli_insert_id($databaseCon);
 
         if ( is_uploaded_file($_FILES['images']['tmp_name'][0])) {
         
@@ -141,7 +142,7 @@ echo $Description;*/
                 $target_dir = "upload/";
                 $target_file = $target_dir . basename($image_name);
                 
-                $last_id = mysqli_insert_id($databaseCon);
+                //$last_id = mysqli_insert_id($databaseCon);
 
                 if (move_uploaded_file($image_tmp, $target_file)) {
                     
@@ -176,8 +177,6 @@ echo $Description;*/
            
            
           
-     if(isset($_GET['error'])){
-    echo '<script>alert("please fill all the information");</script>';
-}
+
 
 mysqli_close($connection); 

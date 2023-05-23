@@ -1,17 +1,12 @@
 <?php
 
-include 'includes/db_connect.php';
+
 include 'includes/Security_inc.php';
 
 
-
-         
-           
-           
-       
-    
-
-
+           if(isset($_GET['error'])){
+    echo '<script>alert("please fill all the information");</script>';
+} 
 
 
 ?>
@@ -108,7 +103,5 @@ include 'includes/Security_inc.php';
   </div>
 
 </body>
-<?php
-mysqli_close($connection); 
-?>
+
 </html>
