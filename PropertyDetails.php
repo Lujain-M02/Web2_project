@@ -113,11 +113,11 @@ if(isset($_SESSION['id']) && $_SESSION['id'] == $owner['id']){
                 }else{
                     $sql = "SELECT * FROM `rentalapplication` WHERE property_id = $id AND home_seeker_id = $userid";
                     $result = mysqli_query($databaseCon, $sql);  
-                         
-                   if(!$row = mysqli_fetch_assoc($result)){//if he didnt apply it do apply page
+                    
+                   if(!$row = mysqli_fetch_assoc($result)){
                     echo "<li class=\"a\"><a  href='includes/apply.php?id=".$row1['id']."'><button class='button'>Apply</button></a></li>";   
                    }
-                    //الانكلود على حسب اذا بتحطين ملف الابلاي فيه ولا لا
+                    
                 }
             ?>
         </div>
