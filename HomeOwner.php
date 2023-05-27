@@ -61,6 +61,9 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
     <link rel="stylesheet" href="Styles\head.css">
     <link rel="icon" href="image/Logo.png">
     <title>Home Owner</title>
+            <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
+        </script>
 </head>
 
 
@@ -104,43 +107,20 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
 <!-- ---------------------------------------first table -------------------------------------------------->
     <table class="FirstHO_table">
         <caption> <h2 class="Caption_table"> Rental Applications </h2></caption>
+        <thead>
         <tr>
             <th>Property Name</th>
             <th>Location</th>
             <th>Applicant’s Name</th>
             <th>Status</th>
         </tr>
-        
+        </thead>
+        <tbody id="Ftable">
 
-        <?php 
-        while($row1 = mysqli_fetch_assoc($result1))
-            {
-         
-            $propertyId = $row1['id'];
+            </tbody>
+            </table>
             
-            $applicantInfo= $row1['HSid']; 
-            $rentalappID = $row1['rid'];
-            $DECptn = "decline";
-            $ACCptn = "accept";
-                echo "<tr>";
-                echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row1['name']."</a></td>";
-                echo "<td>".$row1['location']."</td>";
-                
-                echo "<td><a href='applicantInfo.php?id=$applicantInfo'>".$row1['first_name']." ".$row1['last_name']."</a></td>";
-                
-                echo "<td>".$row1['status']."</td>";
-                
-                if($row1['status']=="under consideration"){
-                    echo "<td><button type = 'submit' name = 'btn1'><a href='updateStatus.php?id=$rentalappID&pid=$propertyId&hsid=$applicantInfo&name=$ACCptn'>Accept</a></button></td> " ;
-                    echo "<td><button type = 'submit' name = 'btn2'><a href='updateStatus.php?id=$rentalappID&pid=$propertyId&hsid=$applicantInfo&name=$DECptn'>Declin</a></button></td> " ;
-                }
-                
-                
-  
-            }
-            echo"</table>";
-            
-        ?>
+
   
                 <div class='Add_button'><button><a href='AddNewProperty.php'>Add New Proproty</a></button></div>
 
@@ -184,7 +164,20 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
         <div class="copyright" style="margin-block-start: 133px;">
             <p>&#169; YOUR HOME 2023.com</p>
         </div>
-
+<script>
+    $(document).ready(function (){
+        populate_Ftable();
+        function populate_Ftable(){
+            $.ajax({
+                url:'Ftbale.php',
+                type:'POST',
+                success:function(data){
+                    $("#Ftable").html(data);
+                }
+            });
+        }
+    });
+</script>
 </body>
 <?php
 mysqli_close($connection); 
