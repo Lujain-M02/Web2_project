@@ -140,10 +140,10 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
             }
             echo"</table>";
             
-            echo "<div class='Add_button'><button><a href='AddNewProperty.php'>Add New Proproty</a></button></div>";
         ?>
   
-    
+                <div class='Add_button'><button><a href='AddNewProperty.php'>Add New Proproty</a></button></div>
+
 
 
 <!-- ---------------------------------------second table -------------------------------------------------->
