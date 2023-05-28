@@ -49,7 +49,7 @@ function Accept(){
   $rows = mysqli_affected_rows($databaseCon);
   
 
-  if($rows==0){
+  if(!$result4){
     echo 0;
     exit;
   }
