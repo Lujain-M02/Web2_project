@@ -149,7 +149,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
                 echo '<td>'.$row2["rooms"].'</td>';
                 echo '<td>'.$row2["location"].'</td>';
                  $prName = $row2["name"];
-                echo "<td><button type = 'submit' name = 'btn3'><a href='Delete.php?pid=$propertyId'>Delete</a></button></td> " ;
+                echo "<td><button type = 'button' name = 'btn3' onclick = \"deletedata( $propertyId )\">Delete</button></td> " ;
                 echo '</tr>';
             }
             
@@ -157,6 +157,35 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
  
         ?>
     </table>
+    <script type="text/javascript">
+      // Function
+      function deletedata(id){
+        $(document).ready(function(){
+          $.ajax({
+            // Action
+            url: 'Delete.php',
+            // Method
+            type: 'POST',
+            data: {
+              // Get value
+              id: id,
+              action: "delete"
+            },
+            success:function(response){
+              // Response is the output of action file
+              if(response == 1){
+                  //$(#'delete'+id).hide('slow');
+                alert("Data Deleted Successfully");
+                window.location.reload();
+              }
+              else if(response == 0){
+                alert("Data Cannot Be Deleted");
+              }
+            }
+          });
+        });
+      }
+    </script>
 
      </div>
     <!-- copyright -->
