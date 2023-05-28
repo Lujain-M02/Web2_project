@@ -212,7 +212,7 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
             data: {
               // Get value
               id: id,
-              propID: propI,
+              propID: propID,
               action: "accept"
             },
             success:function(response){
