@@ -202,6 +202,61 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
             }
           });
       }
+      
+      function Acceptdata(id,propID){
+          $.ajax({
+            // Action
+            url: 'updateStatus.php',
+            // Method
+            type: 'POST',
+            data: {
+              // Get value
+              id: id,
+              propID: propI,
+              action: "accept"
+            },
+            success:function(response){
+              if(response == 1){
+                  populate_Ftable();
+                  populate_Stable();
+                alert("Data Accepted Successfully");
+                //window.location.reload();
+              }
+              else if(response == 0){
+                alert("Data Cannot Be Accepted");
+              }
+            }
+          });
+      }
+      
+      function Declindata(id,propID){
+          $.ajax({
+            // Action
+            url: 'updateStatus.php',
+            // Method
+            type: 'POST',
+            data: {
+              // Get value
+              id: id,
+              propID: propID,
+              action: "declin"
+            },
+            success:function(response){
+              if(response == 1){
+                  populate_Ftable();
+                  populate_Stable();
+                alert("Data Declined Successfully");
+                //window.location.reload();
+              }
+              else if(response == 0){
+                alert("Data Cannot Be Declined");
+              }
+            }
+          });
+      }
+      
+      
+      
 </script>
 </body>
 <?php
