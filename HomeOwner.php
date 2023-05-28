@@ -137,30 +137,46 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
             <th>Location</th>
         </tr>
         
-         <?php 
-        
-         while($row2 = mysqli_fetch_assoc($result2))
-            {
-                $propertyId = $row2['pid'];
-                echo '<tr>';
-                echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row2['name']."</a></td>";
-                echo '<td>'.$row2["category"].'</td>';
-                echo '<td>'.$row2["rent_cost"].'</td>';
-                echo '<td>'.$row2["rooms"].'</td>';
-                echo '<td>'.$row2["location"].'</td>';
-                 $prName = $row2["name"];
-                echo "<td><button type = 'button' name = 'btn3' onclick = \"deletedata( $propertyId )\">Delete</button></td> " ;
-                echo '</tr>';
-            }
-            
- 
- 
-        ?>
+ <tbody id="Stable">
+
+            </tbody>
     </table>
-    <script type="text/javascript">
-      // Function
+
+
+     </div>
+    <!-- copyright -->
+<br>
+        <div class="copyright" style="margin-block-start: 133px;">
+            <p>&#169; YOUR HOME 2023.com</p>
+        </div>
+<script>
+    $(document).ready(function (){
+        populate_Ftable();
+        populate_Stable();
+        });
+        function populate_Ftable(){
+            console.log("F");
+            $.ajax({
+                url:'Ftbale.php',
+                type:'POST',
+                success:function(data){
+                    $("#Ftable").html(data);
+                }
+            });
+        }
+          function populate_Stable(){
+            console.log("S");
+            $.ajax({
+                url:'Stable.php',
+                type:'POST',
+                success:function(data){
+                    $("#Stable").html(data);
+                }
+            });
+        }
+    
+          // Function
       function deletedata(id){
-        $(document).ready(function(){
           $.ajax({
             // Action
             url: 'Delete.php',
@@ -175,37 +191,17 @@ WHERE homeowner_id= $id AND p.property_category_id= pc.id";
               // Response is the output of action file
               if(response == 1){
                   //$(#'delete'+id).hide('slow');
+                  populate_Ftable();
+                  populate_Stable();
                 alert("Data Deleted Successfully");
-                window.location.reload();
+                //window.location.reload();
               }
               else if(response == 0){
                 alert("Data Cannot Be Deleted");
               }
             }
           });
-        });
       }
-    </script>
-
-     </div>
-    <!-- copyright -->
-<br>
-        <div class="copyright" style="margin-block-start: 133px;">
-            <p>&#169; YOUR HOME 2023.com</p>
-        </div>
-<script>
-    $(document).ready(function (){
-        populate_Ftable();
-        function populate_Ftable(){
-            $.ajax({
-                url:'Ftbale.php',
-                type:'POST',
-                success:function(data){
-                    $("#Ftable").html(data);
-                }
-            });
-        }
-    });
 </script>
 </body>
 <?php
