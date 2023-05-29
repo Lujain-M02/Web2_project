@@ -56,7 +56,7 @@
   <link rel="stylesheet" href="Styles\head.css">
   <script src="HSjs.js"></script>
   <link rel="icon" href="image/Logo.png">
- 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <!-- fetoon22 -->
 <body class="HS_body">
@@ -136,12 +136,12 @@
       <h2 class="Caption_table">Homes for rent 
         <!----------------------Search By---------------------->
         <div class="SearchBy">
-            <form method="POST">
           <label>Search By: </label>
-          <select name="Search">
+          <select name="Search" id="Search">
+          <option disabled="" selected="">Filter by</option>
             <?php
              $sql3 =  "SELECT pc.id, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
-        $result3 = mysqli_query($databaseCon, $sql3);
+             $result3 = mysqli_query($databaseCon, $sql3);
              $category = null;
              while($row3 = mysqli_fetch_assoc($result3))
              {
@@ -153,10 +153,7 @@
                  echo '<option value ='.$row3["category"].'>'.$row3["category"].'</option>';
             }
             ?>
-              
-            <input type="submit" class="submit">
            </select>
-            </form>
         </div>
       </h2>
     </caption>
@@ -168,10 +165,7 @@
         <th>Rooms</th>
         <th>Location</th>
     </thead>
-    
-       <?php 
-
-            
+       <?php   
         if(isset($_GET["id"])){
         $proName = $_GET['id'];
         $sql6 =  "SELECT  id FROM propertycategory WHERE category ='$proName'";
@@ -197,27 +191,7 @@
                 echo "<td><div><a href='HomeSeeker.php?id=".$row2["category"]."'class='apply'>Apply</a></div></td>";
                 echo '</tr>';
         }}
-        }else{
-        $sql4 =  "SELECT p.id,p.location,p.rooms, p.name, p.rent_cost, pc.category FROM Property p, propertycategory pc WHERE p.property_category_id = pc.id AND p.id NOT IN( SELECT r.property_id FROM rentalapplication r WHERE r.home_seeker_id = $id)";
-        $result4 = mysqli_query($databaseCon, $sql4);
-       if($_SERVER["REQUEST_METHOD"] == "POST"){
-        while($row4 = mysqli_fetch_assoc($result4)){ 
-           $select = $_POST["Search"];
-          if(isset($select)){
-                    if($select != $row4["category"]){
-                    continue;}
-                    else{
-                       $propertyId = $row4['id'];
-                       echo '<tr>';
-                       echo "<td><a href='PropertyDetails.php?id=$propertyId'>".$row4['name']."</a></td>";
-                       echo '<td>'.$row4["category"].'</td>';
-                       echo '<td>'.$row4["rent_cost"].'</td>';
-                       echo '<td>'.$row4["rooms"].'</td>';
-                       echo '<td>'.$row4["location"].'</td>';
-                       echo "<td><div><a href='includes/apply.php?id=".$row4["id"]."'class='apply'>Apply</a></div></td>";
-                       echo '</tr>'; 
-          }}
-           }}
+        }
         else{
              while($row2 = mysqli_fetch_assoc($result2))
             {
@@ -232,11 +206,14 @@
                 echo '</tr>';
            }
         }
-        }
-        
         ?>
+    
+    <div id="container">
+        
+        
+    </div>
+ 
 </table>
-</div>
 <br>
 
 
@@ -245,7 +222,30 @@
    <div class="copyright">
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
+   <script>
+        $(document).ready(function(){
+        $("#Search").on('change',function(){
+        var value = $(this).val();
+        alert(value);
+       
+      $.post("search.php",{reguest: value}, function(data){
+                    alert("value");
+                    var obj = JSON.parse(data);
+                     $("#container").html("");
+                     for(i=0; i<obj.length; i++){
+                     var res = $('<tr>');
+                     res.append("<td>"+obj[i].name+"</td>");
+                     res.append("<td>"+obj[i].category+"</td>");
+                     res.append("<td>"+obj[i].rent_cost + "</td>");
+                     res.append("<td>"+obj[i].rooms + "</td>");
+                     res.append("<td>"+obj[i].location + "</td>" + "</tr>");
+                     $("#container").append(res);
+                     }
+                  },JSON);
+      });
+    }); 
 
+        </script>
 </body>
 <?php
 mysqli_close($connection); 
