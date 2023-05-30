@@ -165,6 +165,7 @@
         <th>Rooms</th>
         <th>Location</th>
     </thead>
+    <tbody id="container">
        <?php   
         if(isset($_GET["id"])){
         $proName = $_GET['id'];
@@ -207,11 +208,8 @@
            }
         }
         ?>
-    
-    <div id="container">
-        
-        
-    </div>
+
+    </tbody>
  
 </table>
 <br>
@@ -223,29 +221,36 @@
     <p>&#169; YOUR HOME 2023.com</p>
   </div>
    <script>
-        $(document).ready(function(){
-        $("#Search").on('change',function(){
+    $(document).ready(function(){
+    $("#Search").on('change',function(){
         var value = $(this).val();
-        alert(value);
-       
-      $.post("search.php",{reguest: value}, function(data){
-                    alert("value");
-                    var obj = JSON.parse(data);
-                     $("#container").html("");
-                     for(i=0; i<obj.length; i++){
-                     var res = $('<tr>');
-                     res.append("<td>"+obj[i].name+"</td>");
-                     res.append("<td>"+obj[i].category+"</td>");
-                     res.append("<td>"+obj[i].rent_cost + "</td>");
-                     res.append("<td>"+obj[i].rooms + "</td>");
-                     res.append("<td>"+obj[i].location + "</td>" + "</tr>");
-                     $("#container").append(res);
-                     }
-                  },JSON);
+        
+      $.ajax({
+          url: 'filter.php',
+          type: 'POST',
+          data: {reguest: value},
+            
+          success:function(data){
+              var obj = JSON.parse(data);
+              $("#container").html("");
+              for(i=0; i<obj.length; i++){
+              var propertyId = obj[i].id;
+              var res = $("<tr>");
+              res.append("<td><a href='PropertyDetails.php?id="+ propertyId +"'>" +obj[i].name+"</a></td>");
+              res.append("<td>" +obj[i].category+"</td>");
+              res.append("<td>" +obj[i].rent_cost+"</td>");
+              res.append("<td>" +obj[i].rooms+"</td>");
+              res.append("<td>" +obj[i].location+"</td>");
+              res.append("<td><div><a href='includes/apply.php?id="+ propertyId +"'class='apply'>Apply</a></div></td></tr>");
+              $("#container").append(res);
+          }
+          }
+        
+          
       });
-    }); 
-
-        </script>
+      });
+    });
+    </script>
 </body>
 <?php
 mysqli_close($connection); 
